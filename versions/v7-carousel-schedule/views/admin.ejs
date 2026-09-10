@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ruth Talia · Admin</title>
+  <link rel="stylesheet" href="/admin.css">
+</head>
+<body>
+  <header><div><strong>RUTH TALIA</strong><span>Store administration</span></div><a href="/" target="_blank">Open storefront ↗</a></header>
+  <main>
+    <section class="intro">
+      <h1>Catalog and requests</h1>
+      <p>Add and edit dresses without touching HTML. Changes are saved in the server database and appear on the storefront immediately.</p>
+    </section>
+
+    <nav class="tabs"><a href="#products">Products</a><a href="#calendar">Calendar</a><a href="#orders">Orders</a><a href="#appointments">Appointments</a><a href="#configuration">Configuration</a></nav>
+
+    <section id="products">
+      <div class="section-head"><h2>Products</h2><button type="button" onclick="document.getElementById('new-product').showModal()">+ Add product</button></div>
+      <div class="product-list">
+        <% products.forEach(product => { %>
+          <details class="product-row">
+            <summary>
+              <img src="<%= product.imageUrl %>" alt="">
+              <span><strong><%= product.nameEn %></strong><small><%= product.nameHe %> · <%= product.category %></small></span>
+              <b><%= product.price === null ? "Consultation" : `₪${product.price.toLocaleString()}` %></b>
+              <i class="<%= product.active ? 'active' : '' %>"><%= product.active ? "Live" : "Hidden" %></i>
+            </summary>
+            <form method="post" action="/admin/products/<%= product.id %>" class="edit-form">
+              <%- include("product-fields", {product}) %>
+              <div class="form-actions"><button type="submit">Save changes</button></div>
+            </form>
+            <form method="post" action="/admin/products/<%= product.id %>/delete" onsubmit="return confirm('Delete this product?')"><button class="danger" type="submit">Delete product</button></form>
+          </details>
+        <% }) %>
+      </div>
+    </section>
+
+    <section id="calendar">
+      <div class="section-head"><h2>Ruth's available calendar</h2><span><%= slots.filter(slot => slot.active && !slot.booked_at).length %> open</span></div>
+      <div class="schedule-note">
+        <strong>Automatic weekly schedule</strong>
+        <span>Sunday–Thursday, 10:00–18:00 · 60-minute appointments · 13:00–14:00 unavailable · generated 12 weeks ahead.</span>
+        <span>Use <b>Close</b> for times Ruth does not want to offer. Closed times can be reopened later.</span>
+      </div>
+      <div class="table-wrap"><table><thead><tr><th>Date and time</th><th>Duration</th><th>Location</th><th>Status</th><th></th></tr></thead><tbody>
+        <% slots.forEach(slot => { %><tr><td><strong><%= slot.starts_at.replace("T", " ") %></strong></td><td><%= slot.duration_minutes %> min</td><td><%= slot.location %></td><td><%= slot.booked_at ? "Booked" : (slot.active ? "Open" : "Closed") %></td><td><% if (!slot.booked_at) { %><form method="post" action="/admin/slots/<%= slot.id %>/toggle"><button class="<%= slot.active ? 'danger' : 'reopen' %> compact" type="submit"><%= slot.active ? "Close" : "Reopen" %></button></form><% } %></td></tr><% }) %>
+      </tbody></table></div>
+    </section>
+
+    <section id="orders">
+      <div class="section-head"><h2>Orders</h2><span><%= orders.length %> saved</span></div>
+      <div class="table-wrap"><table><thead><tr><th>Order</th><th>Customer</th><th>Contact</th><th>Total</th><th>Status</th><th>Date</th></tr></thead><tbody>
+        <% orders.forEach(order => { %><tr><td><strong><%= order.order_number %></strong></td><td><%= order.customer_name %></td><td><%= order.email %><br><%= order.phone %></td><td>₪<%= order.total.toLocaleString() %></td><td><%= order.status %></td><td><%= order.created_at %></td></tr><% }) %>
+        <% if (!orders.length) { %><tr><td colspan="6">No orders yet.</td></tr><% } %>
+      </tbody></table></div>
+    </section>
+
+    <section id="appointments">
+      <div class="section-head"><h2>Appointment requests</h2><span><%= appointments.length %> saved</span></div>
+      <div class="table-wrap"><table><thead><tr><th>Name</th><th>Contact</th><th>Event</th><th>Request</th><th>Date</th></tr></thead><tbody>
+        <% appointments.forEach(item => { %><tr><td><strong><%= item.name %></strong><br><%= item.language.toUpperCase() %></td><td><%= item.email %><br><%= item.phone %></td><td><%= item.event_date || "—" %><br><%= item.occasion || "" %></td><td><%= item.message || "—" %></td><td><%= item.created_at %></td></tr><% }) %>
+        <% if (!appointments.length) { %><tr><td colspan="5">No appointment requests yet.</td></tr><% } %>
+      </tbody></table></div>
+    </section>
+
+    <section id="configuration">
+      <div class="section-head"><h2>Site configuration</h2></div>
+      <div class="configuration">
+        <p>Brand text, colors, contact details, commerce settings, and hero images are intentionally separate from the templates:</p>
+        <code>config/site.json</code>
+        <p>Product seed data used only when creating a new database:</p>
+        <code>config/products.seed.json</code>
+        <p>See <code>README.md</code> for every editable field and the reusable-site workflow.</p>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="new-product">
+    <button class="dialog-close" type="button" onclick="this.closest('dialog').close()">×</button>
+    <h2>Add a product</h2>
+    <form method="post" action="/admin/products" class="edit-form">
+      <%- include("product-fields", {product:{active:true}}) %>
+      <div class="form-actions"><button type="submit">Add product</button></div>
+    </form>
+  </dialog>
+</body>
+</html>

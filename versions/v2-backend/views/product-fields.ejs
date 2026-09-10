@@ -1,0 +1,14 @@
+<label>URL slug<input name="slug" required value="<%= product.slug || '' %>" placeholder="maya-rose"></label>
+<label>Category<select name="category"><% ["bridal","evening","signature"].forEach(value => { %><option value="<%= value %>" <%= product.category === value ? "selected" : "" %>><%= value %></option><% }) %></select></label>
+<label>English name<input name="nameEn" required value="<%= product.nameEn || '' %>"></label>
+<label>Hebrew name<input name="nameHe" dir="rtl" required value="<%= product.nameHe || '' %>"></label>
+<label>English subtitle<input name="subtitleEn" value="<%= product.subtitleEn || '' %>"></label>
+<label>Hebrew subtitle<input name="subtitleHe" dir="rtl" value="<%= product.subtitleHe || '' %>"></label>
+<label class="wide">English description<textarea name="descriptionEn"><%= product.descriptionEn || '' %></textarea></label>
+<label class="wide">Hebrew description<textarea name="descriptionHe" dir="rtl"><%= product.descriptionHe || '' %></textarea></label>
+<label>Price in ₪<input name="price" type="number" min="0" value="<%= product.price ?? '' %>" placeholder="Leave empty for consultation"></label>
+<label>Inventory<input name="inventory" type="number" min="0" value="<%= product.inventory ?? 0 %>"></label>
+<label>English badge<input name="badgeEn" value="<%= product.badgeEn || '' %>"></label>
+<label>Hebrew badge<input name="badgeHe" dir="rtl" value="<%= product.badgeHe || '' %>"></label>
+<label class="wide">Image URL<input name="imageUrl" type="url" required value="<%= product.imageUrl || '' %>"></label>
+<label class="checkbox"><input name="active" type="checkbox" <%= product.active ? "checked" : "" %>> Visible on storefront</label>

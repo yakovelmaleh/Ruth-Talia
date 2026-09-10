@@ -1,0 +1,155 @@
+[
+  {
+    "slug": "alma-gown",
+    "category": "bridal",
+    "nameEn": "The Alma Gown",
+    "nameHe": "שמלת אלמה",
+    "subtitleEn": "Silk-crepe bridal gown",
+    "subtitleHe": "שמלת כלה מקרפ משי",
+    "descriptionEn": "A clean, sculpted neckline and fluid skirt create quiet drama. Built-in structure offers support without stiffness.",
+    "descriptionHe": "מחשוף נקי ומפוסל וחצאית זורמת יוצרים דרמה שקטה. מבנה פנימי מעניק תמיכה ללא נוקשות.",
+    "price": 12800,
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1594552072238-b8a33785b261?auto=format&fit=crop&w=1000&q=88",
+      "https://images.unsplash.com/photo-1519657337289-077653f724ed?auto=format&fit=crop&w=1000&q=88",
+      "https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?auto=format&fit=crop&w=1000&q=88"
+    ],
+    "badgeEn": "New",
+    "badgeHe": "חדש",
+    "inventory": 8,
+    "active": true
+  },
+  {
+    "slug": "noa-midnight",
+    "category": "evening",
+    "nameEn": "Noa in Midnight",
+    "nameHe": "נועה בחצות",
+    "subtitleEn": "Draped evening dress",
+    "subtitleHe": "שמלת ערב בדרייפינג",
+    "descriptionEn": "Soft draping follows the body without clinging, finished with an asymmetric neckline and a subtle open back.",
+    "descriptionHe": "דרייפינג רך עוקב אחר הגוף בלי להיצמד, עם מחשוף א־סימטרי וגב פתוח בעדינות.",
+    "price": 4650,
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=1000&q=88",
+      "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=1000&q=88"
+    ],
+    "badgeEn": "Signature",
+    "badgeHe": "סיגנצ׳ר",
+    "inventory": 12,
+    "active": true
+  },
+  {
+    "slug": "liora-dress",
+    "category": "signature",
+    "nameEn": "The Liora Dress",
+    "nameHe": "שמלת ליאורה",
+    "subtitleEn": "Sculpted occasion dress",
+    "subtitleHe": "שמלת אירוע מפוסלת",
+    "descriptionEn": "A confident column silhouette with an architectural shoulder and movement through the skirt.",
+    "descriptionHe": "צללית עמוד בטוחה עם כתף אדריכלית ותנועה רכה בחצאית.",
+    "price": 5250,
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=1000&q=88",
+      "https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=1000&q=88"
+    ],
+    "badgeEn": "Limited",
+    "badgeHe": "מהדורה מוגבלת",
+    "inventory": 6,
+    "active": true
+  },
+  {
+    "slug": "talia-couture",
+    "category": "bridal",
+    "nameEn": "The Talia Gown",
+    "nameHe": "שמלת טליה",
+    "subtitleEn": "Made-to-measure bridal couture",
+    "subtitleHe": "קוטור כלות בהתאמה אישית",
+    "descriptionEn": "A made-to-measure statement gown developed through private fittings and hand-finished draping.",
+    "descriptionHe": "שמלת הצהרה בהתאמה אישית, הנוצרת בסדרת מדידות ועם דרייפינג בעבודת יד.",
+    "price": null,
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1519657337289-077653f724ed?auto=format&fit=crop&w=1000&q=88",
+      "https://images.unsplash.com/photo-1594552072238-b8a33785b261?auto=format&fit=crop&w=1000&q=88"
+    ],
+    "badgeEn": "Couture",
+    "badgeHe": "קוטור",
+    "inventory": 0,
+    "active": true
+  },
+  {
+    "slug": "mila-ivory",
+    "category": "bridal",
+    "nameEn": "Mila in Ivory",
+    "nameHe": "מילה באייבורי",
+    "subtitleEn": "Soft satin bridal gown",
+    "subtitleHe": "שמלת כלה מסאטן רך",
+    "descriptionEn": "A luminous satin gown with a softly shaped bodice, elegant waist definition, and a sweeping skirt designed for effortless movement.",
+    "descriptionHe": "שמלת סאטן זוהרת עם מחוך רך, הדגשה אלגנטית של המותן וחצאית נשפכת שנועדה לתנועה טבעית.",
+    "price": 11900,
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1544078751-58fee2d8a03b?auto=format&fit=crop&w=1000&q=88",
+      "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=88"
+    ],
+    "badgeEn": "Bridal",
+    "badgeHe": "כלות",
+    "inventory": 7,
+    "active": true
+  },
+  {
+    "slug": "eden-silk",
+    "category": "evening",
+    "nameEn": "The Eden Dress",
+    "nameHe": "שמלת עדן",
+    "subtitleEn": "Fluid silk evening dress",
+    "subtitleHe": "שמלת ערב ממשי זורם",
+    "descriptionEn": "A refined silk silhouette with delicate gathering, a graceful neckline, and a skirt that moves beautifully from dinner to dancing.",
+    "descriptionHe": "צללית משי מעודנת עם כיווצים עדינים, מחשוף אלגנטי וחצאית שנעה ביופי מארוחת הערב ועד הריקודים.",
+    "price": 4950,
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1568252542512-9fe8fe9c87bb?auto=format&fit=crop&w=1000&q=88",
+      "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=1000&q=88"
+    ],
+    "badgeEn": "New",
+    "badgeHe": "חדש",
+    "inventory": 10,
+    "active": true
+  },
+  {
+    "slug": "maya-sculpted",
+    "category": "signature",
+    "nameEn": "Maya Sculpted",
+    "nameHe": "מאיה המפוסלת",
+    "subtitleEn": "Modern structured occasion dress",
+    "subtitleHe": "שמלת אירוע מודרנית ומובנית",
+    "descriptionEn": "Modern tailoring meets feminine ease in a structured silhouette with a clean neckline and considered volume.",
+    "descriptionHe": "חייטות מודרנית פוגשת רכות נשית בצללית מובנית, מחשוף נקי ונפח מדויק.",
+    "price": 5450,
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1000&q=88",
+      "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=1000&q=88"
+    ],
+    "badgeEn": "Studio Edit",
+    "badgeHe": "בחירת הסטודיו",
+    "inventory": 9,
+    "active": true
+  },
+  {
+    "slug": "leah-couture",
+    "category": "bridal",
+    "nameEn": "Leah Couture",
+    "nameHe": "לאה קוטור",
+    "subtitleEn": "Hand-draped made-to-measure gown",
+    "subtitleHe": "שמלת קוטור בדרייפינג ובהתאמה אישית",
+    "descriptionEn": "A personal couture composition shaped during private fittings, with hand-draped fabric and finishing created for one woman only.",
+    "descriptionHe": "יצירת קוטור אישית הנבנית במהלך מדידות פרטיות, עם בד המעוצב ביד וגימורים שנוצרו עבור אישה אחת בלבד.",
+    "price": null,
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1000&q=88",
+      "https://images.unsplash.com/photo-1595407753234-0882f1e77954?auto=format&fit=crop&w=1000&q=88"
+    ],
+    "badgeEn": "Made to Measure",
+    "badgeHe": "בהתאמה אישית",
+    "inventory": 0,
+    "active": true
+  }
+]

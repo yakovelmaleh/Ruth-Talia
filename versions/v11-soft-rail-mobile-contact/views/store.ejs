@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>" dir="<%= dir %>">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="<%= text(site.seo.description) %>">
+  <meta name="theme-color" content="<%= site.theme.ink %>">
+  <title><%= text(site.seo.title) %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600&family=Heebo:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <link rel="stylesheet" href="/features/product-rail/style.css">
+  <style>:root{--ink:<%= site.theme.ink %>;--paper:<%= site.theme.paper %>;--cream:<%= site.theme.cream %>;--rose:<%= site.theme.rose %>;--sage:<%= site.theme.sage %>}</style>
+</head>
+<body>
+  <div class="announcement"><%= text(site.copy.announcement) %></div>
+  <header>
+    <button class="mobile-menu-button" type="button" data-menu-open aria-label="<%= lang === 'he' ? 'פתיחת תפריט' : 'Open menu' %>">☰</button>
+    <nav>
+      <a href="#collection"><%= lang === "he" ? "קולקציה" : "Collection" %></a>
+      <a href="#story"><%= lang === "he" ? "הסיפור" : "Our story" %></a>
+      <a href="#gallery"><%= lang === "he" ? "גלריה" : "Gallery" %></a>
+      <a href="#atelier"><%= lang === "he" ? "האטלייה" : "The atelier" %></a>
+    </nav>
+    <a class="brand" href="/?lang=<%= lang %>"><strong><%= site.brand.name %></strong><small><%= text(site.brand.descriptor) %></small></a>
+    <div class="header-actions">
+      <a class="language" href="/?lang=<%= lang === 'he' ? 'en' : 'he' %>"><%= lang === "he" ? "EN" : "HE" %></a>
+      <button class="bag-button" type="button" data-cart-open><%= lang === "he" ? "סל" : "Bag" %> <span data-cart-count><%= cart.items.reduce((sum, item) => sum + item.quantity, 0) %></span></button>
+    </div>
+  </header>
+
+  <aside class="mobile-menu" data-mobile-menu>
+    <button type="button" data-menu-close>×</button>
+    <a href="#collection"><%= lang === "he" ? "קולקציה" : "Collection" %></a>
+    <a href="#story"><%= lang === "he" ? "הסיפור שלנו" : "Our story" %></a>
+    <a href="#gallery"><%= lang === "he" ? "גלריה" : "Gallery" %></a>
+    <a href="#atelier"><%= lang === "he" ? "האטלייה" : "The atelier" %></a>
+    <a href="#appointment"><%= lang === "he" ? "קביעת פגישה" : "Book an appointment" %></a>
+  </aside>
+
+  <main>
+    <section class="hero" style="--hero-image:url('<%= site.images.hero %>')">
+      <div class="hero-content">
+        <p class="eyebrow"><%= text(site.copy.heroEyebrow) %></p>
+        <h1><%= text(site.copy.heroTitle) %></h1>
+        <p><%= text(site.copy.heroText) %></p>
+        <div class="actions">
+          <a class="button light" href="#collection"><%= lang === "he" ? "לגלות את הקולקציה" : "Discover the collection" %></a>
+          <a class="button outline" href="#appointment"><%= lang === "he" ? "לקבוע מדידה אישית" : "Book a private fitting" %></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="story split" id="story">
+      <div class="visual" style="background-image:url('<%= site.images.story %>')"></div>
+      <div class="copy">
+        <p class="eyebrow"><%= lang === "he" ? "האישה שמאחורי המותג" : "The woman behind the label" %></p>
+        <h2><%= text(site.copy.storyTitle) %></h2>
+        <p><%= text(site.copy.storyText) %></p>
+        <div class="signature">Ruth Talia</div>
+      </div>
+    </section>
+
+    <section class="collection section" id="collection">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow"><%= lang === "he" ? "קולקציית החותם" : "The signature collection" %></p>
+          <h2><%= text(site.copy.collectionTitle) %></h2>
+        </div>
+        <div class="filters">
+          <% const categories = lang === "he" ? {all:"הכול",bridal:"כלות",evening:"ערב",signature:"סיגנצ׳ר"} : {all:"All",bridal:"Bridal",evening:"Evening",signature:"Signature"}; %>
+          <% Object.entries(categories).forEach(([key, label]) => { %>
+            <button type="button" class="<%= key === 'all' ? 'active' : '' %>" data-filter="<%= key %>"><%= label %></button>
+          <% }) %>
+        </div>
+        <div class="product-rail" data-product-rail>
+          <button class="product-rail-arrow previous" type="button" data-product-rail-previous aria-label="<%= lang === 'he' ? 'המוצרים הקודמים' : 'Previous products' %>">&lt;</button>
+          <div class="product-rail-viewport" data-product-rail-viewport>
+            <div class="product-grid" data-product-rail-track>
+            <% products.forEach(product => { %>
+              <article class="product" data-category="<%= product.category %>">
+              <div class="product-card-media" data-card-carousel data-product-id="<%= product.id %>">
+                <div class="product-card-track" data-card-track>
+                  <% product.imageUrls.forEach((image, index) => { %><div class="product-card-slide"><img src="<%= image %>" alt="<%= lang === 'he' ? product.nameHe : product.nameEn %> — <%= index + 1 %>" loading="lazy"></div><% }) %>
+                </div>
+                <button class="product-card-open" type="button" data-product-card-open aria-label="<%= lang === 'he' ? 'פתיחת פרטי ' + product.nameHe : 'Open details for ' + product.nameEn %>"></button>
+                <button class="card-arrow previous" type="button" data-card-previous aria-label="<%= lang === 'he' ? 'תמונה קודמת' : 'Previous image' %>">&lt;</button>
+                <button class="card-arrow next" type="button" data-card-next aria-label="<%= lang === 'he' ? 'תמונה הבאה' : 'Next image' %>">&gt;</button>
+                <% if (lang === "he" ? product.badgeHe : product.badgeEn) { %>
+                  <span><%= lang === "he" ? product.badgeHe : product.badgeEn %></span>
+                <% } %>
+              </div>
+              <div class="product-details">
+                <h3><%= lang === "he" ? product.nameHe : product.nameEn %></h3>
+                <strong><%= product.price === null ? (lang === "he" ? "מחיר לפי בקשה" : "Price on request") : new Intl.NumberFormat(lang === "he" ? "he-IL" : "en-IL", {style:"currency",currency:"ILS",maximumFractionDigits:0}).format(product.price) %></strong>
+                <p><%= lang === "he" ? product.subtitleHe : product.subtitleEn %></p>
+                <button class="product-view" type="button" data-product-open="<%= product.id %>"><%= lang === "he" ? "לצפייה בפרטים" : "View details" %></button>
+              </div>
+              </article>
+            <% }) %>
+            </div>
+          </div>
+          <button class="product-rail-arrow next" type="button" data-product-rail-next aria-label="<%= lang === 'he' ? 'המוצרים הבאים' : 'Next products' %>">&gt;</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery section" id="gallery">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow"><%= lang === "he" ? "הגלריה" : "The gallery" %></p>
+          <h2><%= lang === "he" ? "רגעים של יופי, תנועה וסגנון." : "Moments of beauty, movement, and style." %></h2>
+        </div>
+        <div class="gallery-carousel-wrap">
+          <button class="gallery-arrow previous" type="button" data-gallery-previous aria-label="<%= lang === 'he' ? 'תמונה קודמת' : 'Previous gallery image' %>">&lt;</button>
+          <div class="gallery-carousel" data-gallery-carousel>
+          <% site.gallery.forEach(item => { %>
+            <figure class="gallery-item"><img src="<%= item.imageUrl %>" alt="<%= text(item.caption) %>" loading="lazy"><figcaption><%= text(item.caption) %></figcaption></figure>
+          <% }) %>
+          </div>
+          <button class="gallery-arrow next" type="button" data-gallery-next aria-label="<%= lang === 'he' ? 'תמונה הבאה' : 'Next gallery image' %>">&gt;</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="manifesto"><blockquote>“<%= text(site.copy.manifesto) %>”</blockquote></section>
+
+    <section class="atelier split reverse" id="atelier">
+      <div class="visual" style="background-image:url('<%= site.images.atelier %>')"></div>
+      <div class="copy">
+        <p class="eyebrow"><%= lang === "he" ? "חוויית הקוטור" : "The couture experience" %></p>
+        <h2><%= text(site.copy.atelierTitle) %></h2>
+        <% const steps = lang === "he"
+          ? [["השיחה","הסיפור שלך, האירוע והדרך שבה תרצי להרגיש."],["הצללית","גזרה שמחמיאה ומעניקה חופש תנועה."],["היצירה","בדים איכותיים, עבודת יד וסדרת מדידות."],["הרגע שלך","כל קו מדויק, בלי להתפשר על נוחות."]]
+          : [["The conversation","Your story, your event, and how you want to feel."],["The silhouette","A shape that celebrates you and moves freely."],["The making","Fine fabrics, hand finishing, and personal fittings."],["Your moment","Every line refined, without compromising comfort."]]; %>
+        <ol class="steps">
+          <% steps.forEach(step => { %><li><strong><%= step[0] %></strong><span><%= step[1] %></span></li><% }) %>
+        </ol>
+      </div>
+    </section>
+
+    <section class="appointment section" id="appointment">
+      <div class="container appointment-grid">
+        <div>
+          <p class="eyebrow"><%= lang === "he" ? "פגישות אישיות" : "Private appointments" %></p>
+          <h2><%= lang === "he" ? "השמלה שלך מתחילה בסיפור שלך." : "Your dress begins with your story." %></h2>
+          <p><%= text(site.contact.address) %><br><%= site.contact.phone %><br><%= site.contact.email %></p>
+        </div>
+        <form data-appointment-form>
+          <label><%= lang === "he" ? "שם מלא" : "Full name" %><input name="name" required autocomplete="name"></label>
+          <label><%= lang === "he" ? "דוא״ל" : "Email" %><input name="email" type="email" required autocomplete="email"></label>
+          <label><%= lang === "he" ? "טלפון" : "Phone" %><input name="phone" required autocomplete="tel"></label>
+          <div class="availability wide" data-availability>
+            <span class="field-title"><%= lang === "he" ? "בחירת מועד פנוי" : "Choose an available appointment" %></span>
+            <div class="calendar-head">
+              <button type="button" data-calendar-previous aria-label="<%= lang === 'he' ? 'חודש קודם' : 'Previous month' %>">&lt;</button>
+              <strong data-calendar-title></strong>
+              <button type="button" data-calendar-next aria-label="<%= lang === 'he' ? 'חודש הבא' : 'Next month' %>">&gt;</button>
+            </div>
+            <div class="calendar-weekdays" data-calendar-weekdays></div>
+            <div class="calendar-days" data-calendar-days></div>
+            <div class="calendar-times" data-calendar-times></div>
+            <input type="hidden" name="slotId" data-slot-id required>
+            <small><%= lang === "he" ? "רק ימים מודגשים זמינים. לאחר בחירת יום יוצגו השעות שרות פתחה." : "Only highlighted days are available. Select a day to see the times Ruth opened." %></small>
+          </div>
+          <label><%= lang === "he" ? "אני מחפשת" : "I am looking for" %>
+            <select name="occasion"><option value="bridal"><%= lang === "he" ? "שמלת כלה" : "Bridal gown" %></option><option value="evening"><%= lang === "he" ? "שמלת ערב" : "Evening dress" %></option><option value="custom"><%= lang === "he" ? "עיצוב אישי" : "Custom creation" %></option></select>
+          </label>
+          <label class="wide"><%= lang === "he" ? "ספרי לנו על השמלה" : "Tell us about your dress" %><textarea name="message"></textarea></label>
+          <input type="hidden" name="language" value="<%= lang %>">
+          <button class="button" type="submit" <%= slots.length ? "" : "disabled" %>><%= lang === "he" ? "שמירת הפגישה" : "Reserve appointment" %></button>
+          <p class="form-status" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div><strong><%= site.brand.name %></strong><p><%= text(site.seo.description) %></p></div>
+    <div><a href="mailto:<%= site.contact.email %>"><%= site.contact.email %></a><a href="tel:<%= site.contact.phoneLink %>"><%= site.contact.phone %></a><a href="<%= site.contact.instagram %>" target="_blank" rel="noopener">Instagram</a><% if (site.contact.facebook) { %><a href="<%= site.contact.facebook %>" target="_blank" rel="noopener">Facebook</a><% } %></div>
+  </footer>
+
+  <div class="overlay" data-overlay></div>
+  <aside class="cart" data-cart>
+    <div class="drawer-head"><h2><%= lang === "he" ? "הסל שלך" : "Your bag" %></h2><button type="button" data-cart-close>×</button></div>
+    <div data-cart-items></div>
+    <div class="cart-footer">
+      <p><span><%= lang === "he" ? "סכום ביניים" : "Subtotal" %></span><strong data-cart-total></strong></p>
+      <small><%= text(site.commerce.shippingNotice) %></small>
+      <button class="button" type="button" data-checkout-open><%= lang === "he" ? "המשך להזמנה" : "Continue order" %></button>
+    </div>
+  </aside>
+
+  <dialog class="product-dialog" data-product-dialog>
+    <button class="dialog-close" type="button" data-dialog-close>×</button>
+    <div class="product-media" data-product-media>
+      <div class="product-media-track" data-product-media-track></div>
+      <button class="media-arrow previous" type="button" data-image-previous aria-label="Previous image">&lt;</button>
+      <button class="media-arrow next" type="button" data-image-next aria-label="Next image">&gt;</button>
+      <div class="media-dots" data-image-dots></div>
+    </div>
+    <div>
+      <p class="eyebrow" data-dialog-category></p>
+      <h2 data-dialog-name></h2>
+      <strong data-dialog-price></strong>
+      <p data-dialog-description></p>
+      <div class="sizes">
+        <% site.commerce.sizes.forEach(size => { %><button type="button" data-size="<%= size %>"><%= size %></button><% }) %>
+      </div>
+      <button class="button" type="button" data-add-cart><%= lang === "he" ? "הוספה לסל" : "Add to bag" %></button>
+      <a class="button consultation" href="#appointment"><%= lang === "he" ? "לתיאום פגישה" : "Book consultation" %></a>
+    </div>
+  </dialog>
+
+  <dialog class="checkout-dialog" data-checkout-dialog>
+    <button class="dialog-close" type="button" data-checkout-close>×</button>
+    <h2><%= lang === "he" ? "השלמת הזמנה" : "Complete your order" %></h2>
+    <p><%= lang === "he" ? "זהו תהליך הזמנה שמור. חיבור תשלום יתווסף לפני העלייה לאוויר." : "This creates a saved order. Payment integration will be added before launch." %></p>
+    <form data-checkout-form>
+      <label><%= lang === "he" ? "שם מלא" : "Full name" %><input name="name" required></label>
+      <label><%= lang === "he" ? "דוא״ל" : "Email" %><input name="email" type="email" required></label>
+      <label><%= lang === "he" ? "טלפון" : "Phone" %><input name="phone" required></label>
+      <button class="button" type="submit"><%= lang === "he" ? "שמירת הזמנה" : "Place order" %></button>
+      <p class="form-status" role="status"></p>
+    </form>
+  </dialog>
+
+  <script>window.STORE_CONTEXT=<%- JSON.stringify({lang, currency:site.commerce.currency, products, cart, slots}) %>;</script>
+  <script src="/store.js" defer></script>
+  <script src="/features/product-rail/client.js" defer></script>
+  <script src="/features/analytics/client.js" defer></script>
+</body>
+</html>

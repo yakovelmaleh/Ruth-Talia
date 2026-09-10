@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>" dir="<%= dir %>">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ruth Talia · <%= lang === "he" ? "ניהול" : "Admin" %></title>
+  <link rel="stylesheet" href="/admin.css">
+</head>
+<body>
+  <% const he = lang === "he"; const tr = (en, hebrew) => he ? hebrew : en; %>
+  <% const statusLabel = value => ({all:tr("All","הכול"),open:tr("Open","פתוח"),closed:tr("Closed","סגור"),booked:tr("Booked","תפוס")})[value] || value; %>
+  <% const deviceLabel = value => ({all:tr("All","הכול"),mobile:tr("Mobile","נייד"),tablet:tr("Tablet","טאבלט"),desktop:tr("Desktop","מחשב")})[value] || value; %>
+  <header>
+    <div><strong>RUTH TALIA</strong><span><%= tr("Store administration","ניהול האתר והחנות") %></span></div>
+    <nav><a href="/admin?lang=<%= he ? 'en' : 'he' %>"><%= he ? "EN" : "עברית" %></a><a href="/?lang=<%= lang %>" target="_blank"><%= tr("Open storefront ↗","פתיחת האתר ↗") %></a></nav>
+  </header>
+  <main>
+    <section class="intro">
+      <h1><%= tr("Catalog and requests","קטלוג ובקשות") %></h1>
+      <p><%= tr("Add and edit dresses, appointments, and content without touching HTML. Changes are saved immediately.","הוסיפי וערכי שמלות, פגישות ותוכן בלי לגעת בקוד. השינויים נשמרים מיד.") %></p>
+    </section>
+
+    <nav class="tabs">
+      <a href="#products"><%= tr("Products","מוצרים") %></a>
+      <a href="#calendar"><%= tr("Calendar","יומן") %></a>
+      <a href="#orders"><%= tr("Orders","הזמנות") %></a>
+      <a href="#appointments"><%= tr("Appointments","פגישות") %></a>
+      <a href="#configuration"><%= tr("Configuration","הגדרות") %></a>
+      <a href="#insights"><%= tr("Visitor insights","נתוני מבקרים") %></a>
+    </nav>
+
+    <section id="products">
+      <div class="section-head"><h2><%= tr("Products","מוצרים") %></h2><button type="button" onclick="document.getElementById('new-product').showModal()">+ <%= tr("Add product","הוספת מוצר") %></button></div>
+      <div class="product-list">
+        <% products.forEach(product => { %>
+          <details class="product-row">
+            <summary>
+              <img src="<%= product.imageUrl %>" alt="">
+              <span><strong><%= he ? product.nameHe : product.nameEn %></strong><small><%= he ? product.nameEn : product.nameHe %> · <%= product.category %></small></span>
+              <b><%= product.price === null ? tr("Consultation","בתיאום") : `₪${product.price.toLocaleString()}` %></b>
+              <i class="<%= product.active ? 'active' : '' %>"><%= product.active ? tr("Live","מוצג") : tr("Hidden","מוסתר") %></i>
+            </summary>
+            <form method="post" action="/admin/products/<%= product.id %>?lang=<%= lang %>" class="edit-form">
+              <%- include("product-fields", {product, lang}) %>
+              <div class="form-actions"><button type="submit"><%= tr("Save changes","שמירת שינויים") %></button></div>
+            </form>
+            <form method="post" action="/admin/products/<%= product.id %>/delete?lang=<%= lang %>" onsubmit="return confirm('<%= tr('Delete this product?','למחוק את המוצר?') %>')"><button class="danger" type="submit"><%= tr("Delete product","מחיקת מוצר") %></button></form>
+          </details>
+        <% }) %>
+      </div>
+    </section>
+
+    <section id="calendar">
+      <div class="section-head"><h2><%= tr("Ruth's available calendar","היומן הזמין של רות") %></h2><span><%= slots.filter(slot => slot.active && !slot.booked_at).length %> <%= tr("open in this view","פתוחים בתצוגה") %></span></div>
+      <div class="schedule-note">
+        <strong><%= tr("Automatic weekly schedule","לוח שבועי אוטומטי") %></strong>
+        <span><%= tr("Sunday–Thursday, 10:00–18:00 · 60-minute appointments · 13:00–14:00 unavailable · generated 12 weeks ahead.","ראשון–חמישי, 10:00–18:00 · פגישות של 60 דקות · 13:00–14:00 לא זמין · נוצר ל-12 שבועות קדימה.") %></span>
+        <span><%= tr("A closure reason is optional and can be useful for Ruth's records.","סיבת הסגירה אינה חובה, אך אפשר להוסיף אותה לתיעוד של רות.") %></span>
+      </div>
+      <form class="filter-bar" method="get" action="/admin#calendar">
+        <input type="hidden" name="lang" value="<%= lang %>">
+        <label><%= tr("From date","מתאריך") %><input type="date" name="slotFrom" value="<%= slotFilters.from %>"></label>
+        <label><%= tr("To date","עד תאריך") %><input type="date" name="slotTo" value="<%= slotFilters.to %>"></label>
+        <label><%= tr("Status","סטטוס") %><select name="slotStatus"><% ["all","open","closed","booked"].forEach(value => { %><option value="<%= value %>" <%= slotFilters.status === value ? "selected" : "" %>><%= statusLabel(value) %></option><% }) %></select></label>
+        <label><%= tr("Rows","שורות") %><select name="slotLimit"><% [20,40,80].forEach(value => { %><option value="<%= value %>" <%= Number(slotFilters.limit) === value ? "selected" : "" %>><%= value %></option><% }) %></select></label>
+        <button type="submit"><%= tr("Filter calendar","סינון היומן") %></button>
+      </form>
+      <div class="table-wrap"><table><thead><tr><th><%= tr("Date and time","תאריך ושעה") %></th><th><%= tr("Duration","משך") %></th><th><%= tr("Location","מיקום") %></th><th><%= tr("Status","סטטוס") %></th><th><%= tr("Reason closed","סיבת סגירה") %></th><th><%= tr("Action","פעולה") %></th></tr></thead><tbody>
+        <% slots.forEach(slot => { %><tr><td><strong><%= slot.starts_at.replace("T", " ") %></strong></td><td><%= slot.duration_minutes %> <%= tr("min","דקות") %></td><td><%= slot.location %></td><td><%= slot.booked_at ? statusLabel("booked") : statusLabel(slot.active ? "open" : "closed") %></td><td><%= slot.close_reason || "—" %></td><td><% if (!slot.booked_at) { %><form method="post" action="/admin/slots/<%= slot.id %>/toggle?lang=<%= lang %>" class="slot-action"><input type="hidden" name="slotFrom" value="<%= slotFilters.from %>"><input type="hidden" name="slotTo" value="<%= slotFilters.to %>"><input type="hidden" name="slotStatus" value="<%= slotFilters.status %>"><% if (slot.active) { %><input name="reason" maxlength="160" placeholder="<%= tr('Optional reason','סיבה - לא חובה') %>"><button class="danger compact" type="submit"><%= tr("Close","סגירה") %></button><% } else { %><button class="reopen compact" type="submit"><%= tr("Reopen","פתיחה מחדש") %></button><% } %></form><% } %></td></tr><% }) %>
+        <% if (!slots.length) { %><tr><td colspan="6"><%= tr("No calendar slots match these filters.","לא נמצאו מועדים המתאימים לסינון.") %></td></tr><% } %>
+      </tbody></table></div>
+    </section>
+
+    <section id="orders">
+      <div class="section-head"><h2><%= tr("Orders","הזמנות") %></h2><span><%= orders.length %> <%= tr("saved","שמורות") %></span></div>
+      <div class="table-wrap"><table><thead><tr><th><%= tr("Order","הזמנה") %></th><th><%= tr("Customer","לקוחה") %></th><th><%= tr("Contact","יצירת קשר") %></th><th><%= tr("Total","סכום") %></th><th><%= tr("Status","סטטוס") %></th><th><%= tr("Date","תאריך") %></th></tr></thead><tbody>
+        <% orders.forEach(order => { %><tr><td><strong><%= order.order_number %></strong></td><td><%= order.customer_name %></td><td><%= order.email %><br><%= order.phone %></td><td>₪<%= order.total.toLocaleString() %></td><td><%= order.status %></td><td><%= order.created_at %></td></tr><% }) %>
+        <% if (!orders.length) { %><tr><td colspan="6"><%= tr("No orders yet.","אין עדיין הזמנות.") %></td></tr><% } %>
+      </tbody></table></div>
+    </section>
+
+    <section id="appointments">
+      <div class="section-head"><h2><%= tr("Appointment requests","בקשות לפגישה") %></h2><span><%= appointments.length %> <%= tr("saved","שמורות") %></span></div>
+      <div class="table-wrap"><table><thead><tr><th><%= tr("Name","שם") %></th><th><%= tr("Contact","יצירת קשר") %></th><th><%= tr("Event","אירוע") %></th><th><%= tr("Request","בקשה") %></th><th><%= tr("Date","תאריך") %></th></tr></thead><tbody>
+        <% appointments.forEach(item => { %><tr><td><strong><%= item.name %></strong><br><%= item.language.toUpperCase() %></td><td><%= item.email %><br><%= item.phone %></td><td><%= item.event_date || "—" %><br><%= item.occasion || "" %></td><td><%= item.message || "—" %></td><td><%= item.created_at %></td></tr><% }) %>
+        <% if (!appointments.length) { %><tr><td colspan="5"><%= tr("No appointment requests yet.","אין עדיין בקשות לפגישה.") %></td></tr><% } %>
+      </tbody></table></div>
+    </section>
+
+    <section id="configuration">
+      <div class="section-head"><h2><%= tr("Site configuration","הגדרות האתר") %></h2></div>
+      <div class="configuration">
+        <p><%= tr("Brand text, colors, contact details, commerce settings, and main images:","טקסטים, צבעים, פרטי קשר, הגדרות מסחר ותמונות ראשיות:") %></p>
+        <code>config/site.json</code>
+        <p><%= tr("Initial product catalog:","קטלוג מוצרים התחלתי:") %></p>
+        <code>config/products.seed.json</code>
+        <p><%= tr("See README.md for editing and reusable-feature instructions.","הסברים לעריכה ולשימוש חוזר נמצאים בקובץ README.md.") %></p>
+      </div>
+    </section>
+
+    <section id="insights" class="insights-section">
+      <div class="insights-hero"><div><p><%= tr("Audience overview","סקירת קהל") %></p><h2><%= tr("Visitor insights","נתוני מבקרים") %></h2></div><span><%= tr("Private, first-party statistics","נתונים פרטיים הנשמרים באתר") %></span></div>
+      <form class="filter-bar insights-filter" method="get" action="/admin#insights">
+        <input type="hidden" name="lang" value="<%= lang %>">
+        <label><%= tr("From","מתאריך") %><input type="date" name="analyticsFrom" value="<%= analytics.filters.from %>"></label>
+        <label><%= tr("To","עד תאריך") %><input type="date" name="analyticsTo" value="<%= analytics.filters.to %>"></label>
+        <label><%= tr("Device","מכשיר") %><select name="analyticsDevice"><% ["all","mobile","tablet","desktop"].forEach(value => { %><option value="<%= value %>" <%= analytics.filters.device === value ? "selected" : "" %>><%= deviceLabel(value) %></option><% }) %></select></label>
+        <button type="submit"><%= tr("Apply filters","הפעלת סינון") %></button>
+      </form>
+      <div class="stat-grid">
+        <article><span><%= tr("Page views","צפיות בדפים") %></span><strong><%= analytics.totals.views %></strong></article>
+        <article><span><%= tr("Unique visitors","מבקרים ייחודיים") %></span><strong><%= analytics.totals.visitors %></strong></article>
+        <article><span><%= tr("Views per visitor","צפיות למבקר") %></span><strong><%= analytics.totals.visitors ? (analytics.totals.views / analytics.totals.visitors).toFixed(1) : "0" %></strong></article>
+      </div>
+      <div class="analytics-grid">
+        <article class="analytics-card analytics-chart">
+          <h3><%= tr("Visits over time","ביקורים לאורך זמן") %></h3>
+          <% const maxDailyViews = Math.max(1, ...analytics.daily.map(item => item.views)); %>
+          <div class="bar-chart">
+            <% analytics.daily.forEach(item => { %><div class="bar-column" title="<%= item.label %>: <%= item.views %>"><span><%= item.views %></span><i style="height:<%= Math.max(5, Math.round(item.views / maxDailyViews * 100)) %>%"></i><small><%= item.label.slice(5) %></small></div><% }) %>
+            <% if (!analytics.daily.length) { %><p><%= tr("No visits in this period yet.","אין עדיין ביקורים בתקופה זו.") %></p><% } %>
+          </div>
+        </article>
+        <% [[tr("Devices","מכשירים"), analytics.devices], [tr("Where visitors came from","מאיפה המבקרים הגיעו"), analytics.sources], [tr("Visitor countries","מדינות המבקרים"), analytics.countries]].forEach(group => { %>
+          <article class="analytics-card"><h3><%= group[0] %></h3><ul class="ranking"><% group[1].forEach(item => { %><li><span><%= deviceLabel(item.label) %></span><strong><%= item.value %></strong></li><% }) %><% if (!group[1].length) { %><li><span><%= tr("No data yet","אין עדיין נתונים") %></span><strong>0</strong></li><% } %></ul></article>
+        <% }) %>
+      </div>
+      <p class="privacy-note"><%= tr("Referral source shows whether visitors arrived directly or from sites such as Facebook and Instagram. Country is available when the hosting provider supplies it. Raw IP addresses are not stored.","מקור ההגעה מציג אם המבקרים הגיעו ישירות או מאתרים כמו פייסבוק ואינסטגרם. מדינה מוצגת כאשר ספק האחסון מספק את הנתון. כתובות IP מלאות אינן נשמרות.") %></p>
+    </section>
+  </main>
+
+  <dialog id="new-product">
+    <button class="dialog-close" type="button" onclick="this.closest('dialog').close()">×</button>
+    <h2><%= tr("Add a product","הוספת מוצר") %></h2>
+    <form method="post" action="/admin/products?lang=<%= lang %>" class="edit-form">
+      <%- include("product-fields", {product:{active:true}, lang}) %>
+      <div class="form-actions"><button type="submit"><%= tr("Add product","הוספת מוצר") %></button></div>
+    </form>
+  </dialog>
+</body>
+</html>

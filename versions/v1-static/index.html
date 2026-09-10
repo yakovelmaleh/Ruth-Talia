@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ruth Talia Couture — bridal and occasionwear created to make every woman feel beautiful, comfortable, and entirely herself.">
+  <title>Ruth Talia Couture — Bridal & Occasionwear</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Heebo:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #211c19;
+      --paper: #f8f4ee;
+      --cream: #eee5da;
+      --blush: #d9b9b0;
+      --rose: #9b5e59;
+      --gold: #a48255;
+      --sage: #828a75;
+      --white: #fffdf9;
+      --line: rgba(33, 28, 25, .15);
+      --shadow: 0 28px 80px rgba(49, 35, 29, .14);
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Assistant", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+    html[lang="he"] body { font-family: "Heebo", Arial, sans-serif; }
+    body.locked { overflow: hidden; }
+    button, input, select, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { color: inherit; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; width: 100%; }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .announcement {
+      position: relative;
+      z-index: 30;
+      padding: 9px 20px;
+      text-align: center;
+      color: var(--white);
+      background: var(--ink);
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    html[lang="he"] .announcement { letter-spacing: .04em; }
+
+    header {
+      position: absolute;
+      z-index: 25;
+      top: 34px;
+      inset-inline: 0;
+      color: var(--white);
+      transition: .35s ease;
+    }
+    header.scrolled {
+      position: fixed;
+      top: 0;
+      color: var(--ink);
+      background: rgba(248, 244, 238, .94);
+      box-shadow: 0 1px 0 var(--line);
+      backdrop-filter: blur(14px);
+    }
+    .nav {
+      width: min(1440px, calc(100% - 48px));
+      height: 88px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 28px;
+    }
+    .nav-links, .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+    .nav-actions { justify-content: flex-end; }
+    .nav-link {
+      position: relative;
+      padding: 8px 0;
+      border: 0;
+      background: none;
+      cursor: pointer;
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    html[lang="he"] .nav-link { letter-spacing: .03em; }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      inset-inline-start: 0;
+      bottom: 2px;
+      width: 0;
+      height: 1px;
+      background: currentColor;
+      transition: width .25s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+    .brand {
+      text-align: center;
+      line-height: .8;
+      white-space: nowrap;
+    }
+    .brand strong {
+      display: block;
+      font-family: var(--serif);
+      font-size: clamp(26px, 2.3vw, 38px);
+      font-weight: 500;
+      letter-spacing: .08em;
+    }
+    .brand small {
+      font-size: 8px;
+      letter-spacing: .45em;
+      text-transform: uppercase;
+    }
+    html[lang="he"] .brand small { letter-spacing: .2em; }
+    .icon-button {
+      position: relative;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+    .icon-button svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.45; }
+    .cart-count {
+      position: absolute;
+      top: 0;
+      inset-inline-end: -1px;
+      min-width: 16px;
+      height: 16px;
+      padding: 0 4px;
+      display: grid;
+      place-items: center;
+      border-radius: 20px;
+      color: var(--white);
+      background: var(--rose);
+      font-size: 9px;
+      font-weight: 600;
+    }
+    .language-toggle {
+      padding: 7px 10px;
+      border: 1px solid currentColor;
+      background: transparent;
+      cursor: pointer;
+      font-size: 10px;
+      letter-spacing: .12em;
+    }
+    .menu-button { display: none; }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: grid;
+      place-items: end start;
+      color: var(--white);
+      background:
+        linear-gradient(90deg, rgba(20, 13, 10, .62), rgba(20, 13, 10, .08) 62%),
+        url("https://images.unsplash.com/photo-1594552072238-b8a33785b261?auto=format&fit=crop&w=2200&q=90") center 23% / cover;
+      overflow: hidden;
+    }
+    html[dir="rtl"] .hero {
+      background:
+        linear-gradient(-90deg, rgba(20, 13, 10, .62), rgba(20, 13, 10, .08) 62%),
+        url("https://images.unsplash.com/photo-1594552072238-b8a33785b261?auto=format&fit=crop&w=2200&q=90") center 23% / cover;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(15, 10, 8, .38), transparent 45%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: min(720px, calc(100% - 48px));
+      margin: 0 0 9vh max(24px, calc((100vw - 1320px) / 2));
+    }
+    html[dir="rtl"] .hero-content {
+      margin-inline: max(24px, calc((100vw - 1320px) / 2)) 0;
+    }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-bottom: 20px;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+    }
+    html[lang="he"] .eyebrow { letter-spacing: .06em; }
+    .eyebrow::before { content: ""; width: 38px; height: 1px; background: currentColor; }
+    .hero h1 {
+      max-width: 720px;
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(58px, 7.5vw, 116px);
+      font-weight: 400;
+      line-height: .85;
+      letter-spacing: -.035em;
+    }
+    html[lang="he"] .hero h1 {
+      font-family: "Heebo", Arial, sans-serif;
+      font-size: clamp(48px, 6.3vw, 92px);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -.05em;
+    }
+    .hero h1 em { display: block; padding-inline-start: 12%; font-weight: 400; }
+    .hero-copy {
+      max-width: 510px;
+      margin: 28px 0 32px;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    .button-row { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button {
+      min-height: 48px;
+      padding: 14px 25px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: var(--white);
+      cursor: pointer;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      transition: .25s ease;
+    }
+    html[lang="he"] .button { letter-spacing: .04em; }
+    .button:hover { background: var(--rose); border-color: var(--rose); transform: translateY(-2px); }
+    .button.light { color: var(--ink); background: var(--white); border-color: var(--white); }
+    .button.light:hover { color: var(--white); background: var(--rose); border-color: var(--rose); }
+    .button.ghost { color: var(--white); background: transparent; border-color: rgba(255, 255, 255, .65); }
+    .button.ghost:hover { color: var(--ink); background: var(--white); }
+    .scroll-hint {
+      position: absolute;
+      z-index: 3;
+      inset-inline-end: 30px;
+      bottom: 40px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      writing-mode: vertical-rl;
+      font-size: 9px;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+    }
+    .scroll-hint::after { content: ""; width: 1px; height: 64px; background: rgba(255,255,255,.65); }
+
+    .marquee {
+      padding: 17px 0;
+      overflow: hidden;
+      color: var(--ink);
+      background: var(--blush);
+      white-space: nowrap;
+    }
+    .marquee-track {
+      width: max-content;
+      display: flex;
+      animation: marquee 30s linear infinite;
+    }
+    .marquee span {
+      padding-inline: 35px;
+      font-family: var(--serif);
+      font-size: 18px;
+      font-style: italic;
+    }
+    .marquee span::after { content: "✦"; margin-inline-start: 70px; font-size: 9px; vertical-align: middle; }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    section { position: relative; }
+    .container { width: min(1320px, calc(100% - 48px)); margin: auto; }
+    .section-pad { padding: clamp(85px, 10vw, 150px) 0; }
+    .section-heading {
+      margin-bottom: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+    }
+    .section-heading h2 {
+      max-width: 680px;
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(48px, 5.8vw, 82px);
+      font-weight: 400;
+      line-height: .95;
+      letter-spacing: -.025em;
+    }
+    html[lang="he"] .section-heading h2 {
+      font-family: "Heebo", Arial, sans-serif;
+      font-weight: 300;
+      line-height: 1.05;
+    }
+    .section-heading p { max-width: 420px; margin: 0; line-height: 1.8; }
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid currentColor;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+    html[lang="he"] .text-link { letter-spacing: .03em; }
+
+    .story {
+      display: grid;
+      grid-template-columns: .92fr 1.08fr;
+      min-height: 780px;
+      background: var(--cream);
+    }
+    .story-visual {
+      position: relative;
+      min-height: 650px;
+      background:
+        linear-gradient(rgba(37,28,24,.05), rgba(37,28,24,.12)),
+        url("https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1300&q=88") center / cover;
+    }
+    .story-stamp {
+      position: absolute;
+      inset-inline-end: -56px;
+      top: 13%;
+      width: 112px;
+      height: 112px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--white);
+      background: var(--rose);
+      font-family: var(--serif);
+      font-size: 16px;
+      font-style: italic;
+      text-align: center;
+      transform: rotate(-9deg);
+    }
+    .story-content {
+      padding: clamp(70px, 9vw, 140px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .story-content h2 {
+      margin: 0 0 30px;
+      font-family: var(--serif);
+      font-size: clamp(50px, 5vw, 78px);
+      font-weight: 400;
+      line-height: .95;
+    }
+    html[lang="he"] .story-content h2 { font-family: "Heebo", sans-serif; font-weight: 300; line-height: 1.05; }
+    .dropcap::first-letter {
+      float: left;
+      margin: 4px 10px 0 0;
+      font-family: var(--serif);
+      font-size: 70px;
+      line-height: .66;
+      color: var(--rose);
+    }
+    html[dir="rtl"] .dropcap::first-letter { float: right; margin: 4px 0 0 10px; }
+    .story-content p { max-width: 560px; margin: 0 0 20px; font-size: 16px; line-height: 1.9; }
+    .signature { margin: 25px 0 30px; font-family: var(--serif); font-size: 31px; font-style: italic; }
+
+    .shop { background: var(--white); }
+    .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 35px; }
+    .filter {
+      padding: 9px 16px;
+      border: 1px solid var(--line);
+      border-radius: 40px;
+      background: transparent;
+      cursor: pointer;
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .filter.active, .filter:hover { color: var(--white); background: var(--ink); }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 34px 18px;
+    }
+    .product-card { min-width: 0; }
+    .product-image {
+      position: relative;
+      aspect-ratio: 3 / 4.25;
+      overflow: hidden;
+      background: var(--cream);
+      cursor: pointer;
+    }
+    .product-image img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform .7s cubic-bezier(.22,.61,.36,1), filter .4s;
+    }
+    .product-card:hover .product-image img { transform: scale(1.035); }
+    .product-badge {
+      position: absolute;
+      top: 14px;
+      inset-inline-start: 14px;
+      padding: 7px 10px;
+      color: var(--ink);
+      background: rgba(255,253,249,.9);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      backdrop-filter: blur(5px);
+    }
+    .quick-add {
+      position: absolute;
+      inset-inline: 12px;
+      bottom: 12px;
+      padding: 13px;
+      border: 0;
+      color: var(--white);
+      background: rgba(33,28,25,.9);
+      cursor: pointer;
+      font-size: 9px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      transform: translateY(calc(100% + 15px));
+      transition: transform .3s ease;
+    }
+    .product-card:hover .quick-add { transform: translateY(0); }
+    .product-info {
+      padding-top: 15px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 6px 15px;
+    }
+    .product-info h3 { margin: 0; font-family: var(--serif); font-size: 23px; font-weight: 500; }
+    .product-info p { grid-column: 1 / -1; margin: 0; color: #6e625d; font-size: 12px; }
+    .product-price { font-size: 13px; font-weight: 500; }
+
+    .manifesto {
+      padding: clamp(90px, 13vw, 190px) 24px;
+      color: var(--white);
+      background: var(--rose);
+      text-align: center;
+      overflow: hidden;
+    }
+    .manifesto::before, .manifesto::after {
+      content: "RT";
+      position: absolute;
+      color: rgba(255,255,255,.055);
+      font-family: var(--serif);
+      font-size: 42vw;
+      line-height: .6;
+      pointer-events: none;
+    }
+    .manifesto::before { top: 10%; inset-inline-start: -9vw; }
+    .manifesto::after { bottom: -4%; inset-inline-end: -7vw; }
+    .manifesto blockquote {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: auto;
+      font-family: var(--serif);
+      font-size: clamp(40px, 6vw, 85px);
+      font-weight: 400;
+      line-height: 1.05;
+    }
+    html[lang="he"] .manifesto blockquote { font-family: "Heebo", sans-serif; font-weight: 300; }
+    .manifesto cite {
+      position: relative;
+      z-index: 1;
+      display: block;
+      margin-top: 32px;
+      font-size: 10px;
+      font-style: normal;
+      letter-spacing: .23em;
+      text-transform: uppercase;
+    }
+
+    .experience-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: clamp(45px, 8vw, 120px);
+      align-items: center;
+    }
+    .experience-image {
+      min-height: 730px;
+      background: url("https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1300&q=88") center / cover;
+    }
+    .steps { counter-reset: atelier; }
+    .step {
+      position: relative;
+      padding: 26px 0 26px 70px;
+      border-bottom: 1px solid var(--line);
+      counter-increment: atelier;
+    }
+    html[dir="rtl"] .step { padding: 26px 70px 26px 0; }
+    .step::before {
+      content: "0" counter(atelier);
+      position: absolute;
+      top: 30px;
+      inset-inline-start: 0;
+      color: var(--rose);
+      font-family: var(--serif);
+      font-size: 23px;
+    }
+    .step h3 { margin: 0 0 8px; font-family: var(--serif); font-size: 28px; font-weight: 500; }
+    .step p { margin: 0; color: #665b55; line-height: 1.7; }
+
+    .appointment {
+      color: var(--white);
+      background:
+        linear-gradient(90deg, rgba(22,15,12,.84), rgba(22,15,12,.46)),
+        url("https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=2200&q=88") center 32% / cover;
+    }
+    html[dir="rtl"] .appointment {
+      background:
+        linear-gradient(-90deg, rgba(22,15,12,.84), rgba(22,15,12,.46)),
+        url("https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=2200&q=88") center 32% / cover;
+    }
+    .appointment-inner {
+      min-height: 780px;
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 8vw;
+      align-items: center;
+    }
+    .appointment h2 {
+      margin: 0 0 22px;
+      font-family: var(--serif);
+      font-size: clamp(55px, 7vw, 100px);
+      font-weight: 400;
+      line-height: .9;
+    }
+    html[lang="he"] .appointment h2 { font-family: "Heebo", sans-serif; font-weight: 300; line-height: 1; }
+    .appointment-copy p { max-width: 460px; line-height: 1.8; }
+    .form-card {
+      padding: clamp(28px, 5vw, 55px);
+      color: var(--ink);
+      background: rgba(255,253,249,.96);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .form-card h3 { margin: 0 0 24px; font-family: var(--serif); font-size: 34px; font-weight: 500; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 17px; }
+    .field { display: grid; gap: 7px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { font-size: 9px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; }
+    html[lang="he"] .field label { letter-spacing: .03em; }
+    .field input, .field select, .field textarea {
+      width: 100%;
+      min-height: 46px;
+      padding: 10px 0;
+      border: 0;
+      border-bottom: 1px solid #b7aaa2;
+      outline: none;
+      color: var(--ink);
+      background: transparent;
+      border-radius: 0;
+    }
+    .field textarea { min-height: 82px; resize: vertical; }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--rose); }
+    .form-status { min-height: 22px; margin-top: 14px; color: var(--rose); font-size: 12px; }
+
+    .testimonials { background: var(--cream); }
+    .quote-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); }
+    .quote {
+      min-height: 370px;
+      padding: clamp(30px, 4vw, 55px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--cream);
+    }
+    .quote-mark { color: var(--rose); font-family: var(--serif); font-size: 70px; line-height: .5; }
+    .quote blockquote { margin: 25px 0; font-family: var(--serif); font-size: 28px; line-height: 1.2; }
+    html[lang="he"] .quote blockquote { font-family: "Heebo", sans-serif; font-size: 22px; font-weight: 300; }
+    .quote footer { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
+
+    .journal-grid { display: grid; grid-template-columns: 1.3fr .85fr .85fr; gap: 20px; }
+    .journal-card .journal-image { aspect-ratio: 4 / 5; overflow: hidden; background: var(--cream); }
+    .journal-card:first-child .journal-image { aspect-ratio: 1 / 1.06; }
+    .journal-card img { height: 100%; object-fit: cover; transition: transform .6s ease; }
+    .journal-card:hover img { transform: scale(1.035); }
+    .journal-meta { margin: 17px 0 8px; color: var(--rose); font-size: 9px; letter-spacing: .17em; text-transform: uppercase; }
+    .journal-card h3 { margin: 0; font-family: var(--serif); font-size: 27px; font-weight: 500; line-height: 1.15; }
+
+    .faq-wrap { display: grid; grid-template-columns: .65fr 1.35fr; gap: 8vw; }
+    .faq-intro h2 { margin: 0 0 20px; font-family: var(--serif); font-size: clamp(50px, 6vw, 80px); font-weight: 400; line-height: .95; }
+    html[lang="he"] .faq-intro h2 { font-family: "Heebo", sans-serif; font-weight: 300; }
+    details { border-top: 1px solid var(--line); }
+    details:last-child { border-bottom: 1px solid var(--line); }
+    summary {
+      position: relative;
+      padding: 24px 42px 24px 0;
+      list-style: none;
+      cursor: pointer;
+      font-family: var(--serif);
+      font-size: 23px;
+    }
+    html[dir="rtl"] summary { padding: 24px 0 24px 42px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "+";
+      position: absolute;
+      inset-inline-end: 4px;
+      top: 24px;
+      font-family: var(--sans);
+      font-size: 22px;
+      font-weight: 300;
+    }
+    details[open] summary::after { content: "−"; }
+    details p { max-width: 710px; margin: -5px 0 25px; color: #625751; line-height: 1.8; }
+
+    .newsletter {
+      padding: 85px 24px;
+      color: var(--white);
+      background: var(--sage);
+      text-align: center;
+    }
+    .newsletter h2 { margin: 0 0 12px; font-family: var(--serif); font-size: clamp(42px, 5vw, 68px); font-weight: 400; }
+    html[lang="he"] .newsletter h2 { font-family: "Heebo", sans-serif; font-weight: 300; }
+    .newsletter p { margin: 0 0 28px; }
+    .newsletter-form {
+      max-width: 540px;
+      margin: auto;
+      display: flex;
+      border-bottom: 1px solid rgba(255,255,255,.7);
+    }
+    .newsletter-form input {
+      flex: 1;
+      min-width: 0;
+      padding: 15px 5px;
+      border: 0;
+      outline: none;
+      color: var(--white);
+      background: transparent;
+    }
+    .newsletter-form input::placeholder { color: rgba(255,255,255,.72); }
+    .newsletter-form button { padding: 10px; border: 0; color: var(--white); background: transparent; cursor: pointer; }
+
+    .site-footer { padding: 80px 0 30px; color: var(--cream); background: var(--ink); }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 50px; }
+    .footer-brand strong { display: block; font-family: var(--serif); font-size: 42px; font-weight: 400; line-height: .8; }
+    .footer-brand p { max-width: 340px; margin-top: 25px; color: #bdb0a6; line-height: 1.7; }
+    .footer-column h3 { margin: 0 0 20px; color: var(--white); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; }
+    .footer-column a, .footer-column span { display: block; margin: 11px 0; color: #bdb0a6; font-size: 13px; }
+    .footer-bottom {
+      margin-top: 65px;
+      padding-top: 23px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      border-top: 1px solid rgba(255,255,255,.12);
+      color: #8f837b;
+      font-size: 10px;
+    }
+
+    .overlay {
+      position: fixed;
+      z-index: 60;
+      inset: 0;
+      visibility: hidden;
+      opacity: 0;
+      background: rgba(23,16,13,.54);
+      backdrop-filter: blur(3px);
+      transition: .3s;
+    }
+    .overlay.open { visibility: visible; opacity: 1; }
+    .drawer {
+      position: fixed;
+      z-index: 65;
+      top: 0;
+      inset-inline-end: 0;
+      width: min(480px, 100%);
+      height: 100%;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      background: var(--white);
+      box-shadow: var(--shadow);
+      transform: translateX(105%);
+      transition: transform .42s cubic-bezier(.22,.61,.36,1);
+    }
+    html[dir="rtl"] .drawer { transform: translateX(-105%); }
+    .drawer.open { transform: translateX(0); }
+    .drawer-head {
+      padding-bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+    }
+    .drawer-head h2 { margin: 0; font-family: var(--serif); font-size: 36px; font-weight: 500; }
+    .close-button { border: 0; background: none; cursor: pointer; font-size: 28px; font-weight: 200; }
+    .cart-items { flex: 1; overflow-y: auto; }
+    .cart-item {
+      padding: 18px 0;
+      display: grid;
+      grid-template-columns: 78px 1fr auto;
+      gap: 15px;
+      border-bottom: 1px solid var(--line);
+    }
+    .cart-item img { width: 78px; height: 104px; object-fit: cover; }
+    .cart-item h3 { margin: 4px 0 7px; font-family: var(--serif); font-size: 20px; font-weight: 500; }
+    .cart-item p { margin: 4px 0; color: #766961; font-size: 11px; }
+    .remove-item { align-self: start; border: 0; background: none; cursor: pointer; font-size: 18px; }
+    .empty-cart { padding: 65px 10px; text-align: center; color: #766961; }
+    .cart-footer { padding-top: 22px; border-top: 1px solid var(--line); }
+    .cart-total { margin-bottom: 18px; display: flex; justify-content: space-between; font-size: 17px; }
+    .cart-note { margin: 0 0 17px; color: #766961; font-size: 11px; line-height: 1.6; }
+    .cart-footer .button { width: 100%; }
+
+    .search-panel {
+      position: fixed;
+      z-index: 70;
+      top: 0;
+      inset-inline: 0;
+      padding: 45px max(24px, calc((100% - 1100px) / 2));
+      visibility: hidden;
+      opacity: 0;
+      background: var(--white);
+      box-shadow: var(--shadow);
+      transform: translateY(-20px);
+      transition: .3s;
+    }
+    .search-panel.open { visibility: visible; opacity: 1; transform: translateY(0); }
+    .search-top { display: flex; align-items: center; gap: 18px; }
+    .search-top input {
+      flex: 1;
+      padding: 15px 0;
+      border: 0;
+      border-bottom: 1px solid var(--ink);
+      outline: none;
+      background: transparent;
+      font-family: var(--serif);
+      font-size: 30px;
+    }
+    .search-results { margin-top: 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .search-result { display: flex; gap: 12px; cursor: pointer; }
+    .search-result img { width: 60px; height: 80px; object-fit: cover; }
+    .search-result strong { display: block; margin-top: 8px; font-family: var(--serif); font-size: 18px; }
+    .search-result span { font-size: 11px; }
+
+    .modal {
+      position: fixed;
+      z-index: 80;
+      inset: 50% auto auto 50%;
+      width: min(1000px, calc(100% - 32px));
+      max-height: calc(100vh - 32px);
+      visibility: hidden;
+      opacity: 0;
+      overflow-y: auto;
+      background: var(--white);
+      box-shadow: var(--shadow);
+      transform: translate(-50%, -47%) scale(.98);
+      transition: .3s;
+    }
+    .modal.open { visibility: visible; opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    .product-modal-grid { display: grid; grid-template-columns: 1fr 1fr; }
+    .modal-image { min-height: 680px; background: var(--cream); }
+    .modal-image img { height: 100%; object-fit: cover; }
+    .modal-content { position: relative; padding: clamp(35px, 6vw, 75px); display: flex; flex-direction: column; justify-content: center; }
+    .modal-content .close-button { position: absolute; top: 20px; inset-inline-end: 24px; }
+    .modal-content h2 { margin: 12px 0 6px; font-family: var(--serif); font-size: 52px; font-weight: 400; line-height: 1; }
+    .modal-price { font-size: 16px; font-weight: 500; }
+    .modal-description { margin: 25px 0; color: #625750; line-height: 1.8; }
+    .size-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin: 9px 0 25px; }
+    .size-button { padding: 10px 4px; border: 1px solid var(--line); background: transparent; cursor: pointer; }
+    .size-button.active { color: var(--white); background: var(--ink); }
+    .modal-details { margin-top: 24px; padding-top: 19px; border-top: 1px solid var(--line); color: #625750; font-size: 12px; line-height: 1.7; }
+    .toast {
+      position: fixed;
+      z-index: 100;
+      inset-inline-start: 50%;
+      bottom: 28px;
+      padding: 13px 22px;
+      visibility: hidden;
+      opacity: 0;
+      color: var(--white);
+      background: var(--ink);
+      box-shadow: var(--shadow);
+      font-size: 12px;
+      transform: translate(-50%, 15px);
+      transition: .25s;
+    }
+    html[dir="rtl"] .toast { transform: translate(50%, 15px); }
+    .toast.show { visibility: visible; opacity: 1; transform: translate(-50%, 0); }
+    html[dir="rtl"] .toast.show { transform: translate(50%, 0); }
+
+    .mobile-menu {
+      position: fixed;
+      z-index: 68;
+      inset: 0;
+      padding: 30px;
+      display: none;
+      flex-direction: column;
+      color: var(--cream);
+      background: var(--ink);
+      transform: translateX(-105%);
+      transition: .35s ease;
+    }
+    html[dir="rtl"] .mobile-menu { transform: translateX(105%); }
+    .mobile-menu.open { transform: translateX(0); }
+    .mobile-menu-head { display: flex; align-items: center; justify-content: space-between; }
+    .mobile-menu-links { margin: auto 0; display: grid; gap: 18px; }
+    .mobile-menu-links a { font-family: var(--serif); font-size: 44px; }
+    .mobile-contact { color: #a99c93; font-size: 12px; line-height: 1.8; }
+
+    [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity .8s, transform .8s; }
+    [data-reveal].revealed { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 1060px) {
+      .nav-links { display: none; }
+      .menu-button { display: grid; }
+      .nav { grid-template-columns: 1fr auto 1fr; width: calc(100% - 32px); }
+      .product-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 14px; }
+      .story-content { padding: 70px; }
+      .experience-grid { gap: 55px; }
+      .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+      .mobile-menu { display: flex; }
+    }
+
+    @media (max-width: 760px) {
+      .announcement { padding: 8px 12px; font-size: 9px; letter-spacing: .09em; }
+      header { top: 30px; }
+      .nav { height: 72px; }
+      .brand strong { font-size: 25px; }
+      .brand small { display: none; }
+      .nav-actions { gap: 3px; }
+      .language-toggle { padding: 5px 7px; }
+      .hero { min-height: 800px; background-position: 61% center; }
+      html[dir="rtl"] .hero { background-position: 61% center; }
+      .hero-content { width: calc(100% - 36px); margin: 0 18px 55px; }
+      html[dir="rtl"] .hero-content { margin: 0 18px 55px; }
+      .hero h1 { font-size: clamp(54px, 17vw, 78px); }
+      .hero-copy { max-width: 88%; font-size: 14px; }
+      .scroll-hint { display: none; }
+      .container { width: calc(100% - 36px); }
+      .section-pad { padding: 80px 0; }
+      .section-heading { display: block; margin-bottom: 35px; }
+      .section-heading p { margin-top: 20px; }
+      .story { grid-template-columns: 1fr; }
+      .story-visual { min-height: 580px; }
+      .story-stamp { inset-inline-end: 18px; top: auto; bottom: -45px; }
+      .story-content { padding: 85px 24px 70px; }
+      .product-grid { grid-template-columns: 1fr 1fr; }
+      .product-info { display: block; }
+      .product-info h3 { font-size: 19px; }
+      .product-price { display: block; margin-top: 5px; }
+      .quick-add { transform: translateY(0); padding: 11px; }
+      .manifesto { padding: 100px 20px; }
+      .experience-grid { grid-template-columns: 1fr; }
+      .experience-image { min-height: 570px; }
+      .appointment-inner { padding: 75px 0; grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .quote-grid { grid-template-columns: 1fr; }
+      .quote { min-height: 300px; }
+      .journal-grid { grid-template-columns: 1fr 1fr; }
+      .journal-card:first-child { grid-column: 1 / -1; }
+      .faq-wrap { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+      .footer-bottom { display: block; line-height: 1.9; }
+      .product-modal-grid { grid-template-columns: 1fr; }
+      .modal-image { min-height: 430px; }
+      .modal-content { padding: 38px 26px; }
+      .search-results { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .brand strong { font-size: 21px; }
+      .icon-button { width: 32px; }
+      .product-grid { gap: 28px 9px; }
+      .product-badge { top: 8px; inset-inline-start: 8px; padding: 5px 7px; font-size: 7px; }
+      .quick-add { inset-inline: 6px; bottom: 6px; font-size: 8px; }
+      .journal-grid { grid-template-columns: 1fr; }
+      .journal-card:first-child { grid-column: auto; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .size-grid { grid-template-columns: repeat(3, 1fr); }
+      .search-results { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="announcement" data-i18n="announcement">Private bridal appointments now open · Worldwide delivery</div>
+
+  <header id="header">
+    <nav class="nav" aria-label="Main navigation">
+      <div class="nav-links">
+        <a class="nav-link" href="#collection" data-i18n="navCollection">Collection</a>
+        <a class="nav-link" href="#story" data-i18n="navStory">Our Story</a>
+        <a class="nav-link" href="#atelier" data-i18n="navAtelier">The Atelier</a>
+      </div>
+      <button class="icon-button menu-button" type="button" onclick="toggleMobileMenu(true)" aria-label="Open menu">
+        <svg viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+      </button>
+      <a class="brand" href="#top" aria-label="Ruth Talia Couture home">
+        <strong>RUTH TALIA</strong>
+        <small data-i18n="brandSub">Couture · Israel</small>
+      </a>
+      <div class="nav-actions">
+        <button class="language-toggle" type="button" onclick="toggleLanguage()" aria-label="Switch language"><span id="languageLabel">HE</span></button>
+        <button class="icon-button" type="button" onclick="toggleSearch(true)" data-i18n-aria="search">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16.2 16.2 4.3 4.3"/></svg>
+        </button>
+        <button class="icon-button" type="button" onclick="toggleCart(true)" data-i18n-aria="cart">
+          <svg viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-content" data-reveal>
+        <div class="eyebrow" data-i18n="heroEyebrow">Designed in Israel · Rooted in Europe</div>
+        <h1><span data-i18n="heroTitle1">Made to</span> <em data-i18n="heroTitle2">feel like you.</em></h1>
+        <p class="hero-copy" data-i18n="heroCopy">Bridal and occasionwear where sculptural beauty meets effortless comfort — thoughtfully created for women, not measurements.</p>
+        <div class="button-row">
+          <a class="button light" href="#collection" data-i18n="discoverCollection">Discover the collection</a>
+          <a class="button ghost" href="#appointment" data-i18n="bookFitting">Book a private fitting</a>
+        </div>
+      </div>
+      <div class="scroll-hint" data-i18n="scroll">Scroll to discover</div>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track" id="marqueeTrack"></div>
+    </div>
+
+    <section class="story" id="story">
+      <div class="story-visual">
+        <div class="story-stamp" data-i18n="storyStamp">From Germany<br>with a dream</div>
+      </div>
+      <div class="story-content" data-reveal>
+        <div class="eyebrow" data-i18n="storyEyebrow">The woman behind the label</div>
+        <h2 data-i18n="storyTitle">A new country.<br>A blank page.<br>An old dream.</h2>
+        <p class="dropcap" data-i18n="storyP1">Ruth Talia arrived in Israel from Germany carrying little more than her eye for detail, her love of fabric, and a belief that a dress can change the way a woman enters a room.</p>
+        <p data-i18n="storyP2">Starting again from zero became her greatest creative freedom. She built an atelier around one promise: every woman deserves design that is beautiful, flattering, and genuinely comfortable — without asking her to become someone else.</p>
+        <div class="signature">Ruth Talia</div>
+        <a class="text-link" href="#atelier" data-i18n="meetDesigner">Meet the designer</a>
+      </div>
+    </section>
+
+    <section class="shop section-pad" id="collection">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <div>
+            <div class="eyebrow" data-i18n="collectionEyebrow">The signature collection</div>
+            <h2 data-i18n="collectionTitle">Dresses for the moments you remember forever.</h2>
+          </div>
+          <p data-i18n="collectionCopy">Limited pieces, considered silhouettes, and details designed to move with you. Select styles are available to order online; couture pieces begin with a private consultation.</p>
+        </div>
+        <div class="filters" id="filters"></div>
+        <div class="product-grid" id="productGrid"></div>
+      </div>
+    </section>
+
+    <section class="manifesto">
+      <blockquote data-i18n="manifesto">“The most beautiful dress is the one that lets the woman inside it shine.”</blockquote>
+      <cite data-i18n="manifestoBy">The Ruth Talia philosophy</cite>
+    </section>
+
+    <section class="section-pad" id="atelier">
+      <div class="container experience-grid">
+        <div class="experience-image" data-reveal></div>
+        <div data-reveal>
+          <div class="eyebrow" data-i18n="atelierEyebrow">The couture experience</div>
+          <div class="section-heading" style="display:block;margin-bottom:20px">
+            <h2 data-i18n="atelierTitle">Created around you, from first sketch to final stitch.</h2>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <h3 data-i18n="step1Title">The conversation</h3>
+              <p data-i18n="step1Copy">We begin with your story, your event, how you want to feel, and what makes you unmistakably you.</p>
+            </div>
+            <div class="step">
+              <h3 data-i18n="step2Title">The silhouette</h3>
+              <p data-i18n="step2Copy">Ruth develops a shape that celebrates your proportions and gives you complete freedom to move.</p>
+            </div>
+            <div class="step">
+              <h3 data-i18n="step3Title">The making</h3>
+              <p data-i18n="step3Copy">Fine fabrics, hand-finished details, and a series of fittings transform the idea into your dress.</p>
+            </div>
+            <div class="step">
+              <h3 data-i18n="step4Title">Your moment</h3>
+              <p data-i18n="step4Copy">The final fitting is about confidence — every line refined, every detail considered, and no compromise on comfort.</p>
+            </div>
+          </div>
+          <a class="button" href="#appointment" style="margin-top:30px" data-i18n="beginJourney">Begin your couture journey</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="appointment" id="appointment">
+      <div class="container appointment-inner">
+        <div class="appointment-copy" data-reveal>
+          <div class="eyebrow" data-i18n="appointmentEyebrow">Private appointments</div>
+          <h2 data-i18n="appointmentTitle">Your dress begins with your story.</h2>
+          <p data-i18n="appointmentCopy">Visit the Ruth Talia atelier for a personal bridal or occasionwear consultation. Remote consultations are available for international clients.</p>
+          <p><strong data-i18n="studioPlaceholder">Atelier address:</strong><br><span data-i18n="addressPlaceholder">[Studio address, Israel — placeholder]</span></p>
+        </div>
+        <form class="form-card" id="appointmentForm" data-reveal>
+          <h3 data-i18n="formTitle">Request an appointment</h3>
+          <div class="form-grid">
+            <div class="field">
+              <label for="name" data-i18n="nameLabel">Full name</label>
+              <input id="name" name="name" required autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="phone" data-i18n="phoneLabel">Phone</label>
+              <input id="phone" name="phone" required autocomplete="tel">
+            </div>
+            <div class="field">
+              <label for="email" data-i18n="emailLabel">Email</label>
+              <input id="email" type="email" name="email" required autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="eventDate" data-i18n="dateLabel">Event date</label>
+              <input id="eventDate" type="date" name="eventDate">
+            </div>
+            <div class="field">
+              <label for="occasion" data-i18n="occasionLabel">I am looking for</label>
+              <select id="occasion" name="occasion">
+                <option value="bridal" data-i18n="occasionBridal">Bridal gown</option>
+                <option value="evening" data-i18n="occasionEvening">Evening dress</option>
+                <option value="mother" data-i18n="occasionMother">Mother of the bride / groom</option>
+                <option value="custom" data-i18n="occasionCustom">Custom creation</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="location" data-i18n="locationLabel">Consultation</label>
+              <select id="location" name="location">
+                <option value="studio" data-i18n="locationStudio">At the atelier</option>
+                <option value="online" data-i18n="locationOnline">Online</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="message" data-i18n="messageLabel">Tell us about your dream dress</label>
+              <textarea id="message" name="message"></textarea>
+            </div>
+          </div>
+          <button class="button" type="submit" data-i18n="sendRequest">Send request</button>
+          <div class="form-status" id="formStatus" role="status"></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="testimonials section-pad">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <div>
+            <div class="eyebrow" data-i18n="loveEyebrow">Love notes</div>
+            <h2 data-i18n="loveTitle">She wore the dress.<br>She owned the moment.</h2>
+          </div>
+          <p data-i18n="testimonialNote">Client stories shown here are placeholders until real testimonials and wedding photographs are provided.</p>
+        </div>
+        <div class="quote-grid" id="quoteGrid"></div>
+      </div>
+    </section>
+
+    <section class="section-pad">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <div>
+            <div class="eyebrow" data-i18n="journalEyebrow">Inside the atelier</div>
+            <h2 data-i18n="journalTitle">Stories of craft, style, and celebration.</h2>
+          </div>
+          <a class="text-link" href="#" data-i18n="viewJournal">View the journal</a>
+        </div>
+        <div class="journal-grid">
+          <article class="journal-card" data-reveal>
+            <div class="journal-image"><img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1200&q=85" alt="Designer working with fabric" loading="lazy"></div>
+            <div class="journal-meta" data-i18n="journalMeta1">Atelier notes · 6 min read</div>
+            <h3 data-i18n="journalCard1">From inspiration to toile: how a couture dress takes shape</h3>
+          </article>
+          <article class="journal-card" data-reveal>
+            <div class="journal-image"><img src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=900&q=85" alt="Elegant evening dress" loading="lazy"></div>
+            <div class="journal-meta" data-i18n="journalMeta2">Style guide · 4 min read</div>
+            <h3 data-i18n="journalCard2">Finding the silhouette that feels entirely your own</h3>
+          </article>
+          <article class="journal-card" data-reveal>
+            <div class="journal-image"><img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=900&q=85" alt="Woman wearing a flowing dress" loading="lazy"></div>
+            <div class="journal-meta" data-i18n="journalMeta3">The edit · 5 min read</div>
+            <h3 data-i18n="journalCard3">Dressing for joy: occasionwear without compromise</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad" style="background:var(--white)">
+      <div class="container faq-wrap">
+        <div class="faq-intro" data-reveal>
+          <div class="eyebrow" data-i18n="faqEyebrow">Before your visit</div>
+          <h2 data-i18n="faqTitle">Questions, answered.</h2>
+          <p data-i18n="faqCopy">Every client and every dress is different. These are the questions we hear most often.</p>
+        </div>
+        <div id="faqList" data-reveal></div>
+      </div>
+    </section>
+
+    <section class="newsletter">
+      <div data-reveal>
+        <h2 data-i18n="newsletterTitle">A little beauty in your inbox.</h2>
+        <p data-i18n="newsletterCopy">New pieces, atelier stories, and private event invitations.</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" required data-i18n-placeholder="emailPlaceholder" placeholder="Your email address" aria-label="Email address">
+          <button type="submit" data-i18n="joinList">Join the list →</button>
+        </form>
+        <div id="newsletterStatus" class="form-status" style="color:var(--white)" role="status"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <strong>RUTH TALIA</strong>
+          <p data-i18n="footerTagline">Bridal and occasionwear designed in Israel, shaped by European craft, and made for the woman wearing it.</p>
+        </div>
+        <div class="footer-column">
+          <h3 data-i18n="footerExplore">Explore</h3>
+          <a href="#collection" data-i18n="navCollection">Collection</a>
+          <a href="#story" data-i18n="navStory">Our Story</a>
+          <a href="#atelier" data-i18n="navAtelier">The Atelier</a>
+          <a href="#appointment" data-i18n="appointments">Appointments</a>
+        </div>
+        <div class="footer-column">
+          <h3 data-i18n="footerHelp">Client care</h3>
+          <a href="#" data-i18n="sizeGuide">Size guide</a>
+          <a href="#" data-i18n="deliveryReturns">Delivery & returns</a>
+          <a href="#" data-i18n="careGuide">Garment care</a>
+          <a href="#" data-i18n="contact">Contact</a>
+        </div>
+        <div class="footer-column">
+          <h3 data-i18n="footerVisit">Visit & follow</h3>
+          <span data-i18n="addressShort">[Atelier address, Israel]</span>
+          <a href="tel:+972000000000">+972 (0)0-000-0000</a>
+          <a href="mailto:hello@ruthtalia.com">hello@ruthtalia.com</a>
+          <a href="#">Instagram</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> Ruth Talia Couture. <span data-i18n="rights">All rights reserved.</span></span>
+        <span data-i18n="prototypeNote">Concept website · Contact details, policies, prices, and imagery require final approval.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="overlay" id="overlay" onclick="closeAll()"></div>
+
+  <aside class="drawer" id="cartDrawer" aria-label="Shopping bag">
+    <div class="drawer-head">
+      <h2 data-i18n="yourBag">Your bag</h2>
+      <button class="close-button" type="button" onclick="toggleCart(false)" data-i18n-aria="close">×</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="cart-total"><span data-i18n="subtotal">Subtotal</span><strong id="cartTotal">₪0</strong></div>
+      <p class="cart-note" data-i18n="cartNote">Shipping, taxes, and fitting requirements are confirmed before payment. Couture pieces require a consultation.</p>
+      <button class="button" type="button" onclick="prototypeCheckout()" data-i18n="checkout">Continue to checkout</button>
+    </div>
+  </aside>
+
+  <section class="search-panel" id="searchPanel" aria-label="Product search">
+    <div class="search-top">
+      <input id="searchInput" type="search" data-i18n-placeholder="searchPlaceholder" placeholder="Search dresses..." aria-label="Search dresses">
+      <button class="close-button" type="button" onclick="toggleSearch(false)" data-i18n-aria="close">×</button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </section>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-head">
+      <div class="brand"><strong>RUTH TALIA</strong></div>
+      <button class="close-button" style="color:var(--white)" type="button" onclick="toggleMobileMenu(false)" data-i18n-aria="close">×</button>
+    </div>
+    <nav class="mobile-menu-links">
+      <a href="#collection" onclick="toggleMobileMenu(false)" data-i18n="navCollection">Collection</a>
+      <a href="#story" onclick="toggleMobileMenu(false)" data-i18n="navStory">Our Story</a>
+      <a href="#atelier" onclick="toggleMobileMenu(false)" data-i18n="navAtelier">The Atelier</a>
+      <a href="#appointment" onclick="toggleMobileMenu(false)" data-i18n="appointments">Appointments</a>
+    </nav>
+    <div class="mobile-contact">hello@ruthtalia.com<br>+972 (0)0-000-0000</div>
+  </div>
+
+  <article class="modal" id="productModal" aria-modal="true" role="dialog">
+    <div class="product-modal-grid">
+      <div class="modal-image"><img id="modalImage" src="" alt=""></div>
+      <div class="modal-content">
+        <button class="close-button" type="button" onclick="closeProduct()" data-i18n-aria="close">×</button>
+        <div class="eyebrow" id="modalCategory"></div>
+        <h2 id="modalName"></h2>
+        <div class="modal-price" id="modalPrice"></div>
+        <p class="modal-description" id="modalDescription"></p>
+        <label style="font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase" data-i18n="selectSize">Select size</label>
+        <div class="size-grid" id="sizeGrid"></div>
+        <button class="button" id="modalAddButton" type="button" data-i18n="addToBag">Add to bag</button>
+        <div class="modal-details" data-i18n="modalDetails">Made in limited quantities. Complimentary fit consultation included. Please allow 4–8 weeks depending on the style and availability.</div>
+      </div>
+    </div>
+  </article>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    const translations = {
+      en: {
+        announcement: "Private bridal appointments now open · Worldwide delivery",
+        navCollection: "Collection", navStory: "Our Story", navAtelier: "The Atelier",
+        brandSub: "Couture · Israel", search: "Search", cart: "Shopping bag", close: "Close",
+        heroEyebrow: "Designed in Israel · Rooted in Europe", heroTitle1: "Made to", heroTitle2: "feel like you.",
+        heroCopy: "Bridal and occasionwear where sculptural beauty meets effortless comfort — thoughtfully created for women, not measurements.",
+        discoverCollection: "Discover the collection", bookFitting: "Book a private fitting", scroll: "Scroll to discover",
+        storyStamp: "From Germany<br>with a dream", storyEyebrow: "The woman behind the label",
+        storyTitle: "A new country.<br>A blank page.<br>An old dream.",
+        storyP1: "Ruth Talia arrived in Israel from Germany carrying little more than her eye for detail, her love of fabric, and a belief that a dress can change the way a woman enters a room.",
+        storyP2: "Starting again from zero became her greatest creative freedom. She built an atelier around one promise: every woman deserves design that is beautiful, flattering, and genuinely comfortable — without asking her to become someone else.",
+        meetDesigner: "Meet the designer", collectionEyebrow: "The signature collection",
+        collectionTitle: "Dresses for the moments you remember forever.",
+        collectionCopy: "Limited pieces, considered silhouettes, and details designed to move with you. Select styles are available to order online; couture pieces begin with a private consultation.",
+        manifesto: "“The most beautiful dress is the one that lets the woman inside it shine.”", manifestoBy: "The Ruth Talia philosophy",
+        atelierEyebrow: "The couture experience", atelierTitle: "Created around you, from first sketch to final stitch.",
+        step1Title: "The conversation", step1Copy: "We begin with your story, your event, how you want to feel, and what makes you unmistakably you.",
+        step2Title: "The silhouette", step2Copy: "Ruth develops a shape that celebrates your proportions and gives you complete freedom to move.",
+        step3Title: "The making", step3Copy: "Fine fabrics, hand-finished details, and a series of fittings transform the idea into your dress.",
+        step4Title: "Your moment", step4Copy: "The final fitting is about confidence — every line refined, every detail considered, and no compromise on comfort.",
+        beginJourney: "Begin your couture journey", appointmentEyebrow: "Private appointments",
+        appointmentTitle: "Your dress begins with your story.",
+        appointmentCopy: "Visit the Ruth Talia atelier for a personal bridal or occasionwear consultation. Remote consultations are available for international clients.",
+        studioPlaceholder: "Atelier address:", addressPlaceholder: "[Studio address, Israel — placeholder]",
+        formTitle: "Request an appointment", nameLabel: "Full name", phoneLabel: "Phone", emailLabel: "Email",
+        dateLabel: "Event date", occasionLabel: "I am looking for", occasionBridal: "Bridal gown",
+        occasionEvening: "Evening dress", occasionMother: "Mother of the bride / groom", occasionCustom: "Custom creation",
+        locationLabel: "Consultation", locationStudio: "At the atelier", locationOnline: "Online",
+        messageLabel: "Tell us about your dream dress", sendRequest: "Send request",
+        formSuccess: "Thank you. This prototype saved your request locally; the final website will connect it to the atelier.",
+        loveEyebrow: "Love notes", loveTitle: "She wore the dress.<br>She owned the moment.",
+        testimonialNote: "Client stories shown here are placeholders until real testimonials and wedding photographs are provided.",
+        journalEyebrow: "Inside the atelier", journalTitle: "Stories of craft, style, and celebration.", viewJournal: "View the journal",
+        journalMeta1: "Atelier notes · 6 min read", journalCard1: "From inspiration to toile: how a couture dress takes shape",
+        journalMeta2: "Style guide · 4 min read", journalCard2: "Finding the silhouette that feels entirely your own",
+        journalMeta3: "The edit · 5 min read", journalCard3: "Dressing for joy: occasionwear without compromise",
+        faqEyebrow: "Before your visit", faqTitle: "Questions, answered.",
+        faqCopy: "Every client and every dress is different. These are the questions we hear most often.",
+        newsletterTitle: "A little beauty in your inbox.", newsletterCopy: "New pieces, atelier stories, and private event invitations.",
+        emailPlaceholder: "Your email address", joinList: "Join the list →", newsletterSuccess: "Welcome to the Ruth Talia list.",
+        footerTagline: "Bridal and occasionwear designed in Israel, shaped by European craft, and made for the woman wearing it.",
+        footerExplore: "Explore", appointments: "Appointments", footerHelp: "Client care", sizeGuide: "Size guide",
+        deliveryReturns: "Delivery & returns", careGuide: "Garment care", contact: "Contact", footerVisit: "Visit & follow",
+        addressShort: "[Atelier address, Israel]", rights: "All rights reserved.",
+        prototypeNote: "Concept website · Contact details, policies, prices, and imagery require final approval.",
+        yourBag: "Your bag", subtotal: "Subtotal",
+        cartNote: "Shipping, taxes, and fitting requirements are confirmed before payment. Couture pieces require a consultation.",
+        checkout: "Continue to checkout", emptyBag: "Your bag is waiting for something beautiful.",
+        searchPlaceholder: "Search dresses...", all: "All", bridal: "Bridal", evening: "Evening", signature: "Signature",
+        quickView: "Quick view", addToBag: "Add to bag", selectSize: "Select size",
+        modalDetails: "Made in limited quantities. Complimentary fit consultation included. Please allow 4–8 weeks depending on the style and availability.",
+        added: "Added to your bag", chooseSize: "Please choose a size", checkoutPrototype: "Checkout will be connected when the prototype becomes a live website.",
+        priceOnRequest: "Price on request", consultation: "Book consultation", remove: "Remove"
+      },
+      he: {
+        announcement: "נפתחו תורים אישיים לכלות · משלוחים לכל העולם",
+        navCollection: "קולקציה", navStory: "הסיפור שלנו", navAtelier: "האטלייה",
+        brandSub: "קוטור · ישראל", search: "חיפוש", cart: "סל קניות", close: "סגירה",
+        heroEyebrow: "עוצב בישראל · שורשים באירופה", heroTitle1: "נוצר כדי", heroTitle2: "להרגיש בדיוק את.",
+        heroCopy: "שמלות כלה וערב שבהן יופי פיסולי פוגש נוחות טבעית — עיצוב שמתחיל באישה, לא במידה.",
+        discoverCollection: "לגלות את הקולקציה", bookFitting: "לתאם מדידה אישית", scroll: "גלי עוד",
+        storyStamp: "מגרמניה<br>עם חלום", storyEyebrow: "האישה שמאחורי המותג",
+        storyTitle: "ארץ חדשה.<br>דף חלק.<br>חלום ותיק.",
+        storyP1: "רות טליה הגיעה לישראל מגרמניה עם עין חדה לפרטים, אהבה עמוקה לבדים ואמונה ששמלה יכולה לשנות את הדרך שבה אישה נכנסת לחדר.",
+        storyP2: "ההתחלה מחדש, מאפס, הפכה לחופש היצירתי הגדול ביותר שלה. היא בנתה אטלייה סביב הבטחה אחת: לכל אישה מגיע עיצוב יפה, מחמיא ונוח באמת — בלי לבקש ממנה להיות מישהי אחרת.",
+        meetDesigner: "להכיר את המעצבת", collectionEyebrow: "קולקציית החותם",
+        collectionTitle: "שמלות לרגעים שתזכרי לתמיד.",
+        collectionCopy: "פריטים במהדורות מוגבלות, צלליות מדויקות ופרטים שנועדו לנוע איתך. דגמים נבחרים זמינים להזמנה אונליין; יצירות קוטור מתחילות בפגישה אישית.",
+        manifesto: "״השמלה היפה ביותר היא זו שנותנת לאישה שבתוכה לזהור.״", manifestoBy: "הפילוסופיה של רות טליה",
+        atelierEyebrow: "חוויית הקוטור", atelierTitle: "נוצר סביבך, מהסקיצה הראשונה ועד התפר האחרון.",
+        step1Title: "השיחה", step1Copy: "מתחילות בסיפור שלך, באירוע, בדרך שבה תרצי להרגיש ובכל מה שהופך אותך למי שאת.",
+        step2Title: "הצללית", step2Copy: "רות מפתחת גזרה שמחמיאה לפרופורציות שלך ומעניקה לך חופש תנועה מלא.",
+        step3Title: "היצירה", step3Copy: "בדים איכותיים, עבודת יד וסדרת מדידות הופכים את הרעיון לשמלה שלך.",
+        step4Title: "הרגע שלך", step4Copy: "המדידה האחרונה מוקדשת לביטחון — כל קו מדויק, כל פרט מחושב, בלי להתפשר על נוחות.",
+        beginJourney: "להתחיל את מסע הקוטור", appointmentEyebrow: "פגישות אישיות",
+        appointmentTitle: "השמלה שלך מתחילה בסיפור שלך.",
+        appointmentCopy: "בואי לאטלייה של רות טליה לפגישת ייעוץ אישית לשמלת כלה או ערב. ללקוחות מחו״ל ניתן לקיים פגישה מקוונת.",
+        studioPlaceholder: "כתובת האטלייה:", addressPlaceholder: "[כתובת הסטודיו בישראל — מקום שמור]",
+        formTitle: "בקשת פגישה", nameLabel: "שם מלא", phoneLabel: "טלפון", emailLabel: "דוא״ל",
+        dateLabel: "תאריך האירוע", occasionLabel: "אני מחפשת", occasionBridal: "שמלת כלה",
+        occasionEvening: "שמלת ערב", occasionMother: "אם הכלה / החתן", occasionCustom: "יצירה בהתאמה אישית",
+        locationLabel: "סוג הפגישה", locationStudio: "באטלייה", locationOnline: "אונליין",
+        messageLabel: "ספרי לנו על שמלת החלומות שלך", sendRequest: "שליחת הבקשה",
+        formSuccess: "תודה. באב־הטיפוס הבקשה נשמרה מקומית; באתר הסופי היא תחובר ישירות לאטלייה.",
+        loveEyebrow: "מכתבי אהבה", loveTitle: "היא לבשה את השמלה.<br>והרגע היה כולו שלה.",
+        testimonialNote: "סיפורי הלקוחות כאן הם מקומות שמורים עד לקבלת המלצות ותמונות אמיתיות.",
+        journalEyebrow: "מתוך האטלייה", journalTitle: "סיפורים על מלאכה, סגנון וחגיגה.", viewJournal: "לצפייה במגזין",
+        journalMeta1: "יומן האטלייה · 6 דקות", journalCard1: "מהשראה לדגם ראשון: כך נוצרת שמלת קוטור",
+        journalMeta2: "מדריך סטייל · 4 דקות", journalCard2: "איך למצוא את הצללית שמרגישה בדיוק שלך",
+        journalMeta3: "הבחירה שלנו · 5 דקות", journalCard3: "להתלבש לשמחה: בגדי אירועים בלי פשרות",
+        faqEyebrow: "לפני הביקור", faqTitle: "שאלות ותשובות.",
+        faqCopy: "כל לקוחה וכל שמלה הן עולם בפני עצמו. אלה השאלות שאנחנו פוגשות לעיתים קרובות.",
+        newsletterTitle: "קצת יופי, ישר לתיבת הדואר.", newsletterCopy: "דגמים חדשים, סיפורים מהאטלייה והזמנות לאירועים פרטיים.",
+        emailPlaceholder: "כתובת הדוא״ל שלך", joinList: "הצטרפות לרשימה ←", newsletterSuccess: "ברוכה הבאה לעולם של רות טליה.",
+        footerTagline: "שמלות כלה וערב בעיצוב ישראלי, במלאכה אירופית ומתוך מחשבה על האישה שלובשת אותן.",
+        footerExplore: "לגלות", appointments: "פגישות", footerHelp: "שירות לקוחות", sizeGuide: "מדריך מידות",
+        deliveryReturns: "משלוחים והחזרות", careGuide: "טיפול בשמלה", contact: "יצירת קשר", footerVisit: "ביקור ומעקב",
+        addressShort: "[כתובת האטלייה, ישראל]", rights: "כל הזכויות שמורות.",
+        prototypeNote: "אתר קונספט · פרטי קשר, מדיניות, מחירים ותמונות דורשים אישור סופי.",
+        yourBag: "הסל שלך", subtotal: "סכום ביניים",
+        cartNote: "משלוח, מיסים ודרישות מדידה יאושרו לפני התשלום. יצירות קוטור דורשות פגישת ייעוץ.",
+        checkout: "המשך לתשלום", emptyBag: "הסל שלך מחכה למשהו יפה.",
+        searchPlaceholder: "חיפוש שמלות...", all: "הכול", bridal: "כלות", evening: "ערב", signature: "סיגנצ׳ר",
+        quickView: "לפרטים", addToBag: "הוספה לסל", selectSize: "בחירת מידה",
+        modalDetails: "מיוצר בכמות מוגבלת. ייעוץ התאמה כלול ללא עלות. זמן ההכנה המשוער הוא 4–8 שבועות, בהתאם לדגם ולזמינות.",
+        added: "נוסף לסל שלך", chooseSize: "יש לבחור מידה", checkoutPrototype: "מערכת התשלום תחובר כאשר אב־הטיפוס יהפוך לאתר פעיל.",
+        priceOnRequest: "מחיר לפי בקשה", consultation: "לתיאום פגישה", remove: "הסרה"
+      }
+    };
+
+    const products = [
+      {
+        id: 1, category: "bridal", price: 12800, badge: {en:"New",he:"חדש"},
+        name: {en:"The Alma Gown",he:"שמלת אלמה"},
+        subtitle: {en:"Silk-crepe bridal gown",he:"שמלת כלה מקרפ משי"},
+        description: {en:"A clean, sculpted neckline and a fluid skirt create quiet drama. Built-in structure offers support without stiffness.",he:"מחשוף נקי ומפוסל וחצאית זורמת יוצרים דרמה שקטה. מבנה פנימי מעניק תמיכה ללא נוקשות."},
+        image: "https://images.unsplash.com/photo-1594552072238-b8a33785b261?auto=format&fit=crop&w=1000&q=88"
+      },
+      {
+        id: 2, category: "evening", price: 4650, badge: {en:"Signature",he:"סיגנצ׳ר"},
+        name: {en:"Noa in Midnight",he:"נועה בחצות"},
+        subtitle: {en:"Draped evening dress",he:"שמלת ערב בדרייפינג"},
+        description: {en:"Soft draping follows the body without clinging, finished with an asymmetric neckline and a subtle open back.",he:"דרייפינג רך עוקב אחר הגוף בלי להיצמד, עם מחשוף א־סימטרי וגב פתוח בעדינות."},
+        image: "https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=1000&q=88"
+      },
+      {
+        id: 3, category: "signature", price: 5250, badge: {en:"Limited",he:"מהדורה מוגבלת"},
+        name: {en:"The Liora Dress",he:"שמלת ליאורה"},
+        subtitle: {en:"Sculpted occasion dress",he:"שמלת אירוע מפוסלת"},
+        description: {en:"A confident column silhouette with an architectural shoulder and movement through the skirt.",he:"צללית עמוד בטוחה עם כתף אדריכלית ותנועה רכה בחצאית."},
+        image: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=1000&q=88"
+      },
+      {
+        id: 4, category: "bridal", price: null, badge: {en:"Couture",he:"קוטור"},
+        name: {en:"The Talia Gown",he:"שמלת טליה"},
+        subtitle: {en:"Made-to-measure bridal couture",he:"קוטור כלות בהתאמה אישית"},
+        description: {en:"A made-to-measure statement gown developed through private fittings, with hand-finished draping and optional detachable sleeves.",he:"שמלת הצהרה בהתאמה אישית, הנוצרת בסדרת מדידות, עם דרייפינג בעבודת יד ואפשרות לשרוולים מתפרקים."},
+        image: "https://images.unsplash.com/photo-1519657337289-077653f724ed?auto=format&fit=crop&w=1000&q=88"
+      },
+      {
+        id: 5, category: "evening", price: 3950, badge: {en:"Online exclusive",he:"בלעדי אונליין"},
+        name: {en:"Maya in Rose",he:"מאיה בוורוד"},
+        subtitle: {en:"Bias-cut satin dress",he:"שמלת סאטן בגזרת אלכסון"},
+        description: {en:"A luminous bias-cut dress with adjustable straps and a softly shaped waist, designed for all-night ease.",he:"שמלה זוהרת בגזרת אלכסון, עם כתפיות מתכווננות ומותן מעוצבת ברכות לנוחות לאורך כל הערב."},
+        image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=1000&q=88"
+      },
+      {
+        id: 6, category: "signature", price: 5850, badge: {en:"Bestseller",he:"הנמכר ביותר"},
+        name: {en:"The Ruth Suit",he:"חליפת רות"},
+        subtitle: {en:"Fluid tuxedo set",he:"חליפת טוקסידו רכה"},
+        description: {en:"Couture attitude in a fluid tailored set: a softly defined jacket with wide-leg trousers and a silk camisole.",he:"נוכחות של קוטור בחליפה מחויטת ורכה: ז׳קט מעודן, מכנסיים רחבים וגופיית משי."},
+        image: "https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=1000&q=88"
+      },
+      {
+        id: 7, category: "bridal", price: 8900, badge: {en:"Civil ceremony",he:"חתונה אזרחית"},
+        name: {en:"The Eden Midi",he:"שמלת עדן מידי"},
+        subtitle: {en:"Modern bridal midi",he:"שמלת כלה מידי מודרנית"},
+        description: {en:"A modern bridal midi with a softly corseted bodice, clean skirt, and detachable bow detail.",he:"שמלת כלה מידי מודרנית עם מחוך רך, חצאית נקייה ופרט פפיון מתפרק."},
+        image: "https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?auto=format&fit=crop&w=1000&q=88"
+      },
+      {
+        id: 8, category: "evening", price: 4250, badge: {en:"New colour",he:"צבע חדש"},
+        name: {en:"Dalia in Sage",he:"דליה בירוק מרווה"},
+        subtitle: {en:"One-shoulder silk dress",he:"שמלת משי על כתף אחת"},
+        description: {en:"An elegant one-shoulder silhouette with gathered silk, an adjustable waist, and a graceful side slit.",he:"צללית אלגנטית על כתף אחת, עם כיווצי משי, מותן מתכווננת ושסע צד מעודן."},
+        image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=1000&q=88"
+      }
+    ];
+
+    const testimonials = {
+      en: [
+        {quote:"I never thought I could feel this comfortable and this beautiful in the same dress.",name:"Maya · Bride in Tel Aviv"},
+        {quote:"Ruth listened to what I said — and somehow understood everything I could not put into words.",name:"Dana · Mother of the bride"},
+        {quote:"The dress moved with me all night. I felt elegant, confident, and completely myself.",name:"Yael · Evening client"}
+      ],
+      he: [
+        {quote:"לא האמנתי שאוכל להרגיש כל כך נוח וכל כך יפה באותה שמלה.",name:"מאיה · כלה מתל אביב"},
+        {quote:"רות הקשיבה למה שאמרתי — ואיכשהו הבינה גם את כל מה שלא הצלחתי להסביר.",name:"דנה · אם הכלה"},
+        {quote:"השמלה נעה איתי כל הערב. הרגשתי אלגנטית, בטוחה ובעיקר אני.",name:"יעל · לקוחת ערב"}
+      ]
+    };
+
+    const faqs = {
+      en: [
+        ["How far in advance should I begin?", "For a made-to-measure bridal gown, we recommend beginning 6–9 months before the wedding. Occasionwear typically requires 8–12 weeks. Rush options may be available."],
+        ["Do you create dresses for every size?", "Yes. The couture process is built around your body and comfort. Ready-to-order sizing and the final size range will be confirmed before the store launches."],
+        ["Can I order online?", "Selected ready-to-order pieces can be purchased online. Bridal couture and highly structured pieces begin with a consultation to protect the fit and finish."],
+        ["Do you work with international clients?", "Yes. The process can begin online, with coordinated fittings in Israel or through an approved local alterations specialist where appropriate."],
+        ["What is the price range?", "Ready-to-order evening pieces in this concept begin around ₪3,950. Bridal and made-to-measure couture prices vary by fabric, construction, and handwork; final pricing will be approved before launch."]
+      ],
+      he: [
+        ["כמה זמן מראש כדאי להתחיל?", "לשמלת כלה בהתאמה אישית מומלץ להתחיל 6–9 חודשים לפני החתונה. לשמלות ערב נדרשים בדרך כלל 8–12 שבועות. לעיתים ניתן לתאם מסלול מזורז."],
+        ["האם אתן מעצבות לכל מידה?", "כן. תהליך הקוטור נבנה סביב הגוף והנוחות שלך. טווח המידות של הדגמים המוכנים יאושר לפני השקת החנות."],
+        ["אפשר להזמין אונליין?", "דגמים נבחרים מהקולקציה המוכנה זמינים לרכישה אונליין. קוטור כלות ודגמים מורכבים מתחילים בפגישת ייעוץ כדי להבטיח התאמה וגימור."],
+        ["אתן עובדות עם לקוחות מחו״ל?", "כן. ניתן להתחיל את התהליך אונליין ולתאם מדידות בישראל או, במקרים המתאימים, עם מומחית תיקונים מקומית מאושרת."],
+        ["מה טווח המחירים?", "בקונספט זה, שמלות ערב מוכנות מתחילות סביב 3,950 ₪. מחיר שמלות כלה וקוטור אישי משתנה לפי הבד, המבנה ועבודת היד; המחירים הסופיים יאושרו לפני ההשקה."]
+      ]
+    };
+
+    let language = localStorage.getItem("rtLanguage") || "en";
+    let activeFilter = "all";
+    let cart = JSON.parse(localStorage.getItem("rtCart") || "[]");
+    let activeProduct = null;
+    let selectedSize = "";
+    let toastTimer;
+
+    const money = value => new Intl.NumberFormat(language === "he" ? "he-IL" : "en-IL", {
+      style: "currency", currency: "ILS", maximumFractionDigits: 0
+    }).format(value);
+
+    function t(key) {
+      return translations[language][key] || translations.en[key] || key;
+    }
+
+    function applyLanguage() {
+      const isHebrew = language === "he";
+      document.documentElement.lang = language;
+      document.documentElement.dir = isHebrew ? "rtl" : "ltr";
+      document.title = isHebrew ? "רות טליה קוטור — שמלות כלה וערב" : "Ruth Talia Couture — Bridal & Occasionwear";
+      document.getElementById("languageLabel").textContent = isHebrew ? "EN" : "HE";
+      document.querySelectorAll("[data-i18n]").forEach(element => {
+        const value = t(element.dataset.i18n);
+        element.innerHTML = value;
+      });
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(element => {
+        element.placeholder = t(element.dataset.i18nPlaceholder);
+      });
+      document.querySelectorAll("[data-i18n-aria]").forEach(element => {
+        element.setAttribute("aria-label", t(element.dataset.i18nAria));
+      });
+      buildMarquee();
+      renderFilters();
+      renderProducts();
+      renderCart();
+      renderTestimonials();
+      renderFaqs();
+      if (activeProduct) openProduct(activeProduct.id);
+      localStorage.setItem("rtLanguage", language);
+    }
+
+    function toggleLanguage() {
+      language = language === "en" ? "he" : "en";
+      applyLanguage();
+    }
+
+    function buildMarquee() {
+      const words = language === "he"
+        ? ["נוצר עבורך", "יופי שאפשר לנשום בו", "מלאכת יד מודרנית", "נשיות ללא חוקים"]
+        : ["Made for your story", "Beauty you can breathe in", "Modern handcraft", "Womanhood without rules"];
+      const doubled = [...words, ...words];
+      document.getElementById("marqueeTrack").innerHTML = doubled.map(word => `<span>${word}</span>`).join("");
+    }
+
+    function renderFilters() {
+      const filters = ["all", "bridal", "evening", "signature"];
+      document.getElementById("filters").innerHTML = filters.map(filter =>
+        `<button class="filter ${activeFilter === filter ? "active" : ""}" type="button" onclick="setFilter('${filter}')">${t(filter)}</button>`
+      ).join("");
+    }
+
+    function setFilter(filter) {
+      activeFilter = filter;
+      renderFilters();
+      renderProducts();
+    }
+
+    function renderProducts() {
+      const filtered = activeFilter === "all" ? products : products.filter(product => product.category === activeFilter);
+      document.getElementById("productGrid").innerHTML = filtered.map(product => `
+        <article class="product-card" data-reveal>
+          <div class="product-image" onclick="openProduct(${product.id})">
+            <img src="${product.image}" alt="${product.name[language]}" loading="lazy">
+            <span class="product-badge">${product.badge[language]}</span>
+            <button class="quick-add" type="button" onclick="event.stopPropagation();openProduct(${product.id})">${product.price ? t("quickView") : t("consultation")}</button>
+          </div>
+          <div class="product-info">
+            <h3>${product.name[language]}</h3>
+            <span class="product-price">${product.price ? money(product.price) : t("priceOnRequest")}</span>
+            <p>${product.subtitle[language]}</p>
+          </div>
+        </article>
+      `).join("");
+      observeReveals();
+    }
+
+    function openProduct(id) {
+      activeProduct = products.find(product => product.id === id);
+      selectedSize = "";
+      if (!activeProduct) return;
+      document.getElementById("modalImage").src = activeProduct.image;
+      document.getElementById("modalImage").alt = activeProduct.name[language];
+      document.getElementById("modalCategory").textContent = t(activeProduct.category);
+      document.getElementById("modalName").textContent = activeProduct.name[language];
+      document.getElementById("modalPrice").textContent = activeProduct.price ? money(activeProduct.price) : t("priceOnRequest");
+      document.getElementById("modalDescription").textContent = activeProduct.description[language];
+      document.getElementById("modalAddButton").textContent = activeProduct.price ? t("addToBag") : t("consultation");
+      document.getElementById("modalAddButton").onclick = activeProduct.price ? addActiveProduct : () => {
+        closeProduct();
+        document.getElementById("appointment").scrollIntoView({behavior:"smooth"});
+      };
+      document.getElementById("sizeGrid").style.display = activeProduct.price ? "grid" : "none";
+      document.getElementById("sizeGrid").innerHTML = ["34","36","38","40","42","44"].map(size =>
+        `<button class="size-button" type="button" onclick="selectSize('${size}', this)">${size}</button>`
+      ).join("");
+      document.getElementById("productModal").classList.add("open");
+      document.getElementById("overlay").classList.add("open");
+      document.body.classList.add("locked");
+    }
+
+    function selectSize(size, button) {
+      selectedSize = size;
+      document.querySelectorAll(".size-button").forEach(item => item.classList.remove("active"));
+      button.classList.add("active");
+    }
+
+    function addActiveProduct() {
+      if (!selectedSize) {
+        showToast(t("chooseSize"));
+        return;
+      }
+      const match = cart.find(item => item.id === activeProduct.id && item.size === selectedSize);
+      if (match) match.qty += 1;
+      else cart.push({id: activeProduct.id, size: selectedSize, qty: 1});
+      saveCart();
+      closeProduct();
+      showToast(t("added"));
+    }
+
+    function saveCart() {
+      localStorage.setItem("rtCart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function renderCart() {
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById("cartCount").textContent = count;
+      const cartItems = document.getElementById("cartItems");
+      if (!cart.length) {
+        cartItems.innerHTML = `<div class="empty-cart">${t("emptyBag")}</div>`;
+      } else {
+        cartItems.innerHTML = cart.map((item, index) => {
+          const product = products.find(entry => entry.id === item.id);
+          if (!product) return "";
+          return `<div class="cart-item">
+            <img src="${product.image}" alt="${product.name[language]}">
+            <div>
+              <h3>${product.name[language]}</h3>
+              <p>${t("selectSize")}: ${item.size} · × ${item.qty}</p>
+              <strong>${money(product.price * item.qty)}</strong>
+            </div>
+            <button class="remove-item" type="button" onclick="removeCartItem(${index})" aria-label="${t("remove")}">×</button>
+          </div>`;
+        }).join("");
+      }
+      const total = cart.reduce((sum, item) => {
+        const product = products.find(entry => entry.id === item.id);
+        return sum + (product?.price || 0) * item.qty;
+      }, 0);
+      document.getElementById("cartTotal").textContent = money(total);
+    }
+
+    function removeCartItem(index) {
+      cart.splice(index, 1);
+      saveCart();
+    }
+
+    function toggleCart(open) {
+      closeAll();
+      if (open) {
+        document.getElementById("cartDrawer").classList.add("open");
+        document.getElementById("overlay").classList.add("open");
+        document.body.classList.add("locked");
+      }
+    }
+
+    function toggleSearch(open) {
+      closeAll();
+      if (open) {
+        document.getElementById("searchPanel").classList.add("open");
+        document.getElementById("overlay").classList.add("open");
+        document.body.classList.add("locked");
+        setTimeout(() => document.getElementById("searchInput").focus(), 100);
+        renderSearchResults("");
+      }
+    }
+
+    function renderSearchResults(term) {
+      const normalized = term.trim().toLowerCase();
+      const matches = products.filter(product =>
+        `${product.name.en} ${product.name.he} ${product.subtitle.en} ${product.subtitle.he}`.toLowerCase().includes(normalized)
+      ).slice(0, 4);
+      document.getElementById("searchResults").innerHTML = matches.map(product => `
+        <div class="search-result" onclick="toggleSearch(false);openProduct(${product.id})">
+          <img src="${product.image}" alt="${product.name[language]}">
+          <div><strong>${product.name[language]}</strong><span>${product.price ? money(product.price) : t("priceOnRequest")}</span></div>
+        </div>
+      `).join("");
+    }
+
+    function closeProduct() {
+      document.getElementById("productModal").classList.remove("open");
+      document.getElementById("overlay").classList.remove("open");
+      document.body.classList.remove("locked");
+      activeProduct = null;
+    }
+
+    function toggleMobileMenu(open) {
+      closeAll();
+      if (open) {
+        document.getElementById("mobileMenu").classList.add("open");
+        document.body.classList.add("locked");
+      }
+    }
+
+    function closeAll() {
+      document.getElementById("cartDrawer").classList.remove("open");
+      document.getElementById("searchPanel").classList.remove("open");
+      document.getElementById("productModal").classList.remove("open");
+      document.getElementById("mobileMenu").classList.remove("open");
+      document.getElementById("overlay").classList.remove("open");
+      document.body.classList.remove("locked");
+      activeProduct = null;
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 2500);
+    }
+
+    function prototypeCheckout() {
+      showToast(t("checkoutPrototype"));
+    }
+
+    function renderTestimonials() {
+      document.getElementById("quoteGrid").innerHTML = testimonials[language].map(item => `
+        <article class="quote" data-reveal>
+          <div class="quote-mark">“</div>
+          <blockquote>${item.quote}</blockquote>
+          <footer>${item.name} · <span style="opacity:.6">[Placeholder]</span></footer>
+        </article>
+      `).join("");
+      observeReveals();
+    }
+
+    function renderFaqs() {
+      document.getElementById("faqList").innerHTML = faqs[language].map(([question, answer]) => `
+        <details><summary>${question}</summary><p>${answer}</p></details>
+      `).join("");
+    }
+
+    function observeReveals() {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {threshold: .08});
+      document.querySelectorAll("[data-reveal]:not(.revealed)").forEach(element => observer.observe(element));
+    }
+
+    document.getElementById("searchInput").addEventListener("input", event => renderSearchResults(event.target.value));
+    document.getElementById("appointmentForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const data = Object.fromEntries(new FormData(event.target).entries());
+      localStorage.setItem("rtAppointmentDraft", JSON.stringify(data));
+      document.getElementById("formStatus").textContent = t("formSuccess");
+      event.target.reset();
+    });
+    document.getElementById("newsletterForm").addEventListener("submit", event => {
+      event.preventDefault();
+      document.getElementById("newsletterStatus").textContent = t("newsletterSuccess");
+      event.target.reset();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeAll();
+    });
+    window.addEventListener("scroll", () => {
+      document.getElementById("header").classList.toggle("scrolled", window.scrollY > 90);
+    }, {passive:true});
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    applyLanguage();
+    observeReveals();
+  </script>
+</body>
+</html>

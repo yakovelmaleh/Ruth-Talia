@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ruth Talia · Admin</title>
+  <link rel="stylesheet" href="/admin.css">
+</head>
+<body>
+  <header><div><strong>RUTH TALIA</strong><span>Store administration</span></div><a href="/" target="_blank">Open storefront ↗</a></header>
+  <main>
+    <section class="intro">
+      <h1>Catalog and requests</h1>
+      <p>Add and edit dresses without touching HTML. Changes are saved in the server database and appear on the storefront immediately.</p>
+    </section>
+
+    <nav class="tabs"><a href="#insights">Insights</a><a href="#products">Products</a><a href="#calendar">Calendar</a><a href="#orders">Orders</a><a href="#appointments">Appointments</a><a href="#configuration">Configuration</a></nav>
+
+    <section id="insights">
+      <div class="section-head"><h2>Visitor insights</h2><span>First-party statistics</span></div>
+      <form class="filter-bar" method="get" action="/admin#insights">
+        <label>From<input type="date" name="analyticsFrom" value="<%= analytics.filters.from %>"></label>
+        <label>To<input type="date" name="analyticsTo" value="<%= analytics.filters.to %>"></label>
+        <label>Device<select name="analyticsDevice"><% ["all","mobile","tablet","desktop"].forEach(value => { %><option value="<%= value %>" <%= analytics.filters.device === value ? "selected" : "" %>><%= value[0].toUpperCase() + value.slice(1) %></option><% }) %></select></label>
+        <button type="submit">Apply filters</button>
+      </form>
+      <div class="stat-grid">
+        <article><strong><%= analytics.totals.views %></strong><span>Page views</span></article>
+        <article><strong><%= analytics.totals.visitors %></strong><span>Unique visitors</span></article>
+        <article><strong><%= analytics.totals.visitors ? (analytics.totals.views / analytics.totals.visitors).toFixed(1) : "0" %></strong><span>Views per visitor</span></article>
+      </div>
+      <div class="analytics-grid">
+        <article class="analytics-card analytics-chart">
+          <h3>Visits over time</h3>
+          <% const maxDailyViews = Math.max(1, ...analytics.daily.map(item => item.views)); %>
+          <div class="bar-chart">
+            <% analytics.daily.forEach(item => { %>
+              <div class="bar-column" title="<%= item.label %>: <%= item.views %> views, <%= item.visitors %> visitors">
+                <span><%= item.views %></span>
+                <i style="height:<%= Math.max(5, Math.round(item.views / maxDailyViews * 100)) %>%"></i>
+                <small><%= item.label.slice(5) %></small>
+              </div>
+            <% }) %>
+            <% if (!analytics.daily.length) { %><p>No visits in this period yet.</p><% } %>
+          </div>
+        </article>
+        <% [["Devices", analytics.devices], ["Referral sources", analytics.sources], ["Countries", analytics.countries]].forEach(group => { %>
+          <article class="analytics-card"><h3><%= group[0] %></h3><ul class="ranking"><% group[1].forEach(item => { %><li><span><%= item.label %></span><strong><%= item.value %></strong></li><% }) %><% if (!group[1].length) { %><li><span>No data yet</span><strong>0</strong></li><% } %></ul></article>
+        <% }) %>
+      </div>
+      <p class="privacy-note">Analytics uses an anonymous visitor cookie and does not store raw IP addresses. Country is shown only when the hosting provider supplies a country header.</p>
+    </section>
+
+    <section id="products">
+      <div class="section-head"><h2>Products</h2><button type="button" onclick="document.getElementById('new-product').showModal()">+ Add product</button></div>
+      <div class="product-list">
+        <% products.forEach(product => { %>
+          <details class="product-row">
+            <summary>
+              <img src="<%= product.imageUrl %>" alt="">
+              <span><strong><%= product.nameEn %></strong><small><%= product.nameHe %> · <%= product.category %></small></span>
+              <b><%= product.price === null ? "Consultation" : `₪${product.price.toLocaleString()}` %></b>
+              <i class="<%= product.active ? 'active' : '' %>"><%= product.active ? "Live" : "Hidden" %></i>
+            </summary>
+            <form method="post" action="/admin/products/<%= product.id %>" class="edit-form">
+              <%- include("product-fields", {product}) %>
+              <div class="form-actions"><button type="submit">Save changes</button></div>
+            </form>
+            <form method="post" action="/admin/products/<%= product.id %>/delete" onsubmit="return confirm('Delete this product?')"><button class="danger" type="submit">Delete product</button></form>
+          </details>
+        <% }) %>
+      </div>
+    </section>
+
+    <section id="calendar">
+      <div class="section-head"><h2>Ruth's available calendar</h2><span><%= slots.filter(slot => slot.active && !slot.booked_at).length %> open</span></div>
+      <div class="schedule-note">
+        <strong>Automatic weekly schedule</strong>
+        <span>Sunday–Thursday, 10:00–18:00 · 60-minute appointments · 13:00–14:00 unavailable · generated 12 weeks ahead.</span>
+        <span>Use <b>Close</b> for times Ruth does not want to offer. Closed times can be reopened later.</span>
+      </div>
+      <form class="filter-bar" method="get" action="/admin#calendar">
+        <label>From date<input type="date" name="slotFrom" value="<%= slotFilters.from %>"></label>
+        <label>To date<input type="date" name="slotTo" value="<%= slotFilters.to %>"></label>
+        <label>Status<select name="slotStatus"><% ["all","open","closed","booked"].forEach(value => { %><option value="<%= value %>" <%= slotFilters.status === value ? "selected" : "" %>><%= value[0].toUpperCase() + value.slice(1) %></option><% }) %></select></label>
+        <label>Rows<select name="slotLimit"><% [20,40,80].forEach(value => { %><option value="<%= value %>" <%= Number(slotFilters.limit) === value ? "selected" : "" %>><%= value %></option><% }) %></select></label>
+        <button type="submit">Filter calendar</button>
+      </form>
+      <div class="table-wrap"><table><thead><tr><th>Date and time</th><th>Duration</th><th>Location</th><th>Status</th><th>Reason closed</th><th>Action</th></tr></thead><tbody>
+        <% slots.forEach(slot => { %><tr><td><strong><%= slot.starts_at.replace("T", " ") %></strong></td><td><%= slot.duration_minutes %> min</td><td><%= slot.location %></td><td><%= slot.booked_at ? "Booked" : (slot.active ? "Open" : "Closed") %></td><td><%= slot.close_reason || "—" %></td><td><% if (!slot.booked_at) { %><form method="post" action="/admin/slots/<%= slot.id %>/toggle" class="slot-action"><input type="hidden" name="slotFrom" value="<%= slotFilters.from %>"><input type="hidden" name="slotTo" value="<%= slotFilters.to %>"><input type="hidden" name="slotStatus" value="<%= slotFilters.status %>"><% if (slot.active) { %><input name="reason" required maxlength="160" placeholder="Reason for closing"><button class="danger compact" type="submit">Close</button><% } else { %><button class="reopen compact" type="submit">Reopen</button><% } %></form><% } %></td></tr><% }) %>
+        <% if (!slots.length) { %><tr><td colspan="6">No calendar slots match these filters.</td></tr><% } %>
+      </tbody></table></div>
+    </section>
+
+    <section id="orders">
+      <div class="section-head"><h2>Orders</h2><span><%= orders.length %> saved</span></div>
+      <div class="table-wrap"><table><thead><tr><th>Order</th><th>Customer</th><th>Contact</th><th>Total</th><th>Status</th><th>Date</th></tr></thead><tbody>
+        <% orders.forEach(order => { %><tr><td><strong><%= order.order_number %></strong></td><td><%= order.customer_name %></td><td><%= order.email %><br><%= order.phone %></td><td>₪<%= order.total.toLocaleString() %></td><td><%= order.status %></td><td><%= order.created_at %></td></tr><% }) %>
+        <% if (!orders.length) { %><tr><td colspan="6">No orders yet.</td></tr><% } %>
+      </tbody></table></div>
+    </section>
+
+    <section id="appointments">
+      <div class="section-head"><h2>Appointment requests</h2><span><%= appointments.length %> saved</span></div>
+      <div class="table-wrap"><table><thead><tr><th>Name</th><th>Contact</th><th>Event</th><th>Request</th><th>Date</th></tr></thead><tbody>
+        <% appointments.forEach(item => { %><tr><td><strong><%= item.name %></strong><br><%= item.language.toUpperCase() %></td><td><%= item.email %><br><%= item.phone %></td><td><%= item.event_date || "—" %><br><%= item.occasion || "" %></td><td><%= item.message || "—" %></td><td><%= item.created_at %></td></tr><% }) %>
+        <% if (!appointments.length) { %><tr><td colspan="5">No appointment requests yet.</td></tr><% } %>
+      </tbody></table></div>
+    </section>
+
+    <section id="configuration">
+      <div class="section-head"><h2>Site configuration</h2></div>
+      <div class="configuration">
+        <p>Brand text, colors, contact details, commerce settings, and hero images are intentionally separate from the templates:</p>
+        <code>config/site.json</code>
+        <p>Product seed data used only when creating a new database:</p>
+        <code>config/products.seed.json</code>
+        <p>See <code>README.md</code> for every editable field and the reusable-site workflow.</p>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="new-product">
+    <button class="dialog-close" type="button" onclick="this.closest('dialog').close()">×</button>
+    <h2>Add a product</h2>
+    <form method="post" action="/admin/products" class="edit-form">
+      <%- include("product-fields", {product:{active:true}}) %>
+      <div class="form-actions"><button type="submit">Add product</button></div>
+    </form>
+  </dialog>
+</body>
+</html>

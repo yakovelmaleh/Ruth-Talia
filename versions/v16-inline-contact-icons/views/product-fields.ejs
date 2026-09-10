@@ -1,0 +1,15 @@
+<% const fieldsHe = lang === "he"; const ft = (en, he) => fieldsHe ? he : en; %>
+<label><%= ft("URL slug","מזהה לכתובת") %><input name="slug" required value="<%= product.slug || '' %>" placeholder="maya-rose"></label>
+<label><%= ft("Category","קטגוריה") %><select name="category"><% ["bridal","evening","signature"].forEach(value => { %><option value="<%= value %>" <%= product.category === value ? "selected" : "" %>><%= ({bridal:ft("Bridal","כלות"),evening:ft("Evening","ערב"),signature:ft("Signature","סיגנצ׳ר")})[value] %></option><% }) %></select></label>
+<label><%= ft("English name","שם באנגלית") %><input name="nameEn" required value="<%= product.nameEn || '' %>"></label>
+<label><%= ft("Hebrew name","שם בעברית") %><input name="nameHe" dir="rtl" required value="<%= product.nameHe || '' %>"></label>
+<label><%= ft("English subtitle","כותרת משנה באנגלית") %><input name="subtitleEn" value="<%= product.subtitleEn || '' %>"></label>
+<label><%= ft("Hebrew subtitle","כותרת משנה בעברית") %><input name="subtitleHe" dir="rtl" value="<%= product.subtitleHe || '' %>"></label>
+<label class="wide"><%= ft("English description","תיאור באנגלית") %><textarea name="descriptionEn"><%= product.descriptionEn || '' %></textarea></label>
+<label class="wide"><%= ft("Hebrew description","תיאור בעברית") %><textarea name="descriptionHe" dir="rtl"><%= product.descriptionHe || '' %></textarea></label>
+<label><%= ft("Price in ₪","מחיר ב-₪") %><input name="price" type="number" min="0" value="<%= product.price ?? '' %>" placeholder="<%= ft('Leave empty for consultation','להשאיר ריק למחיר בתיאום') %>"></label>
+<label><%= ft("Inventory","מלאי") %><input name="inventory" type="number" min="0" value="<%= product.inventory ?? 0 %>"></label>
+<label><%= ft("English badge","תג באנגלית") %><input name="badgeEn" value="<%= product.badgeEn || '' %>"></label>
+<label><%= ft("Hebrew badge","תג בעברית") %><input name="badgeHe" dir="rtl" value="<%= product.badgeHe || '' %>"></label>
+<label class="wide"><%= ft("Image URLs — minimum two, one per line","כתובות תמונה — לפחות שתיים, אחת בכל שורה") %><textarea name="imageUrls" required minlength="20" placeholder="https://...&#10;https://..."><%= (product.imageUrls || []).join('\n') %></textarea><small><%= ft("The first image is the cover. All images support smooth swipe.","התמונה הראשונה היא תמונת השער. אפשר להחליק בין כל התמונות.") %></small></label>
+<label class="checkbox"><input name="active" type="checkbox" <%= product.active ? "checked" : "" %>> <%= ft("Visible on storefront","מוצג באתר") %></label>

@@ -1,0 +1,79 @@
+[
+  {
+    "slug": "alma-gown",
+    "category": "bridal",
+    "nameEn": "The Alma Gown",
+    "nameHe": "שמלת אלמה",
+    "subtitleEn": "Silk-crepe bridal gown",
+    "subtitleHe": "שמלת כלה מקרפ משי",
+    "descriptionEn": "A clean, sculpted neckline and fluid skirt create quiet drama. Built-in structure offers support without stiffness.",
+    "descriptionHe": "מחשוף נקי ומפוסל וחצאית זורמת יוצרים דרמה שקטה. מבנה פנימי מעניק תמיכה ללא נוקשות.",
+    "price": 12800,
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1594552072238-b8a33785b261?auto=format&fit=crop&w=1000&q=88",
+      "https://images.unsplash.com/photo-1519657337289-077653f724ed?auto=format&fit=crop&w=1000&q=88",
+      "https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?auto=format&fit=crop&w=1000&q=88"
+    ],
+    "badgeEn": "New",
+    "badgeHe": "חדש",
+    "inventory": 8,
+    "active": true
+  },
+  {
+    "slug": "noa-midnight",
+    "category": "evening",
+    "nameEn": "Noa in Midnight",
+    "nameHe": "נועה בחצות",
+    "subtitleEn": "Draped evening dress",
+    "subtitleHe": "שמלת ערב בדרייפינג",
+    "descriptionEn": "Soft draping follows the body without clinging, finished with an asymmetric neckline and a subtle open back.",
+    "descriptionHe": "דרייפינג רך עוקב אחר הגוף בלי להיצמד, עם מחשוף א־סימטרי וגב פתוח בעדינות.",
+    "price": 4650,
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=1000&q=88",
+      "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=1000&q=88"
+    ],
+    "badgeEn": "Signature",
+    "badgeHe": "סיגנצ׳ר",
+    "inventory": 12,
+    "active": true
+  },
+  {
+    "slug": "liora-dress",
+    "category": "signature",
+    "nameEn": "The Liora Dress",
+    "nameHe": "שמלת ליאורה",
+    "subtitleEn": "Sculpted occasion dress",
+    "subtitleHe": "שמלת אירוע מפוסלת",
+    "descriptionEn": "A confident column silhouette with an architectural shoulder and movement through the skirt.",
+    "descriptionHe": "צללית עמוד בטוחה עם כתף אדריכלית ותנועה רכה בחצאית.",
+    "price": 5250,
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=1000&q=88",
+      "https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=1000&q=88"
+    ],
+    "badgeEn": "Limited",
+    "badgeHe": "מהדורה מוגבלת",
+    "inventory": 6,
+    "active": true
+  },
+  {
+    "slug": "talia-couture",
+    "category": "bridal",
+    "nameEn": "The Talia Gown",
+    "nameHe": "שמלת טליה",
+    "subtitleEn": "Made-to-measure bridal couture",
+    "subtitleHe": "קוטור כלות בהתאמה אישית",
+    "descriptionEn": "A made-to-measure statement gown developed through private fittings and hand-finished draping.",
+    "descriptionHe": "שמלת הצהרה בהתאמה אישית, הנוצרת בסדרת מדידות ועם דרייפינג בעבודת יד.",
+    "price": null,
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1519657337289-077653f724ed?auto=format&fit=crop&w=1000&q=88",
+      "https://images.unsplash.com/photo-1594552072238-b8a33785b261?auto=format&fit=crop&w=1000&q=88"
+    ],
+    "badgeEn": "Couture",
+    "badgeHe": "קוטור",
+    "inventory": 0,
+    "active": true
+  }
+]

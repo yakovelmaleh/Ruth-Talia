@@ -1,0 +1,113 @@
+{
+  "brand": {
+    "name": "RUTH TALIA",
+    "descriptor": {
+      "en": "Couture · Israel",
+      "he": "קוטור · ישראל"
+    }
+  },
+  "seo": {
+    "title": {
+      "en": "Ruth Talia Couture — Bridal & Occasionwear",
+      "he": "רות טליה קוטור — שמלות כלה וערב"
+    },
+    "description": {
+      "en": "Bridal and occasionwear created to make every woman feel beautiful, comfortable, and entirely herself.",
+      "he": "שמלות כלה וערב שנוצרו כדי שכל אישה תרגיש יפה, נינוחה ובדיוק היא."
+    }
+  },
+  "theme": {
+    "ink": "#211c19",
+    "paper": "#f8f4ee",
+    "cream": "#eee5da",
+    "rose": "#9b5e59",
+    "sage": "#828a75"
+  },
+  "contact": {
+    "phone": "+972 (0)0-000-0000",
+    "phoneLink": "+972000000000",
+    "email": "hello@ruthtalia.com",
+    "instagram": "https://instagram.com/",
+    "address": {
+      "en": "[Atelier address, Israel]",
+      "he": "[כתובת האטלייה, ישראל]"
+    }
+  },
+  "calendar": {
+    "timeZone": "Asia/Jerusalem",
+    "defaultDurationMinutes": 60
+  },
+  "commerce": {
+    "currency": "ILS",
+    "sizes": ["34", "36", "38", "40", "42", "44"],
+    "shippingNotice": {
+      "en": "Shipping and final fitting requirements are confirmed before payment.",
+      "he": "משלוח ודרישות מדידה סופיות יאושרו לפני התשלום."
+    }
+  },
+  "images": {
+    "hero": "https://images.unsplash.com/photo-1594552072238-b8a33785b261?auto=format&fit=crop&w=2200&q=90",
+    "story": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1400&q=88",
+    "atelier": "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1400&q=88"
+  },
+  "gallery": [
+    {
+      "imageUrl": "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=1200&q=88",
+      "caption": {"en": "Movement, light, and a dress made for joy.", "he": "תנועה, אור ושמלה שנוצרה לשמחה."}
+    },
+    {
+      "imageUrl": "https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=1200&q=88",
+      "caption": {"en": "Modern tailoring with couture confidence.", "he": "חייטות מודרנית עם ביטחון של קוטור."}
+    },
+    {
+      "imageUrl": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&q=88",
+      "caption": {"en": "Details that reveal themselves slowly.", "he": "פרטים שמתגלים לאט."}
+    },
+    {
+      "imageUrl": "https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=1200&q=88",
+      "caption": {"en": "An evening silhouette with effortless presence.", "he": "צללית ערב עם נוכחות טבעית."}
+    },
+    {
+      "imageUrl": "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=1200&q=88",
+      "caption": {"en": "Sculptural lines, softened for the woman wearing them.", "he": "קווים פיסוליים, מרוככים עבור האישה שלובשת אותם."}
+    }
+  ],
+  "copy": {
+    "announcement": {
+      "en": "Private bridal appointments now open · Worldwide delivery",
+      "he": "נפתחו תורים אישיים לכלות · משלוחים לכל העולם"
+    },
+    "heroEyebrow": {
+      "en": "Designed in Israel · Rooted in Europe",
+      "he": "עוצב בישראל · שורשים באירופה"
+    },
+    "heroTitle": {
+      "en": "Made to feel like you.",
+      "he": "נוצר כדי להרגיש בדיוק את."
+    },
+    "heroText": {
+      "en": "Bridal and occasionwear where sculptural beauty meets effortless comfort — thoughtfully created for women, not measurements.",
+      "he": "שמלות כלה וערב שבהן יופי פיסולי פוגש נוחות טבעית — עיצוב שמתחיל באישה, לא במידה."
+    },
+    "storyTitle": {
+      "en": "A new country. A blank page. An old dream.",
+      "he": "ארץ חדשה. דף חלק. חלום ותיק."
+    },
+    "storyText": {
+      "en": "Ruth Talia arrived in Israel from Germany carrying her eye for detail, her love of fabric, and a belief that a dress can change the way a woman enters a room. Starting again from zero became her greatest creative freedom. She built an atelier around one promise: every woman deserves design that is beautiful, flattering, and genuinely comfortable.",
+      "he": "רות טליה הגיעה לישראל מגרמניה עם עין חדה לפרטים, אהבה עמוקה לבדים ואמונה ששמלה יכולה לשנות את הדרך שבה אישה נכנסת לחדר. ההתחלה מחדש, מאפס, הפכה לחופש היצירתי הגדול ביותר שלה. היא בנתה אטלייה סביב הבטחה אחת: לכל אישה מגיע עיצוב יפה, מחמיא ונוח באמת."
+    },
+    "collectionTitle": {
+      "en": "Dresses for the moments you remember forever.",
+      "he": "שמלות לרגעים שתזכרי לתמיד."
+    },
+    "atelierTitle": {
+      "en": "Created around you, from first sketch to final stitch.",
+      "he": "נוצר סביבך, מהסקיצה הראשונה ועד התפר האחרון."
+    },
+    "manifesto": {
+      "en": "The most beautiful dress is the one that lets the woman inside it shine.",
+      "he": "השמלה היפה ביותר היא זו שנותנת לאישה שבתוכה לזהור."
+    }
+  }
+}

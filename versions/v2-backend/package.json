@@ -1,0 +1,19 @@
+{
+  "name": "ruth-talia-couture-v2",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Configurable bilingual couture storefront with a server-owned catalog, cart, orders, and admin.",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "check": "node --check server.js && node --check src/database.js && node --check public/store.js && node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=22.5"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0"
+  }
+}

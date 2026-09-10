@@ -1,0 +1,19 @@
+.DS_Store
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+
+# Runtime data is generated locally and may contain customer information.
+data/*.sqlite
+data/*.sqlite-shm
+data/*.sqlite-wal
+versions/*/data/*.sqlite
+versions/*/data/*.sqlite-shm
+versions/*/data/*.sqlite-wal
+
+# Local editor and operating-system files.
+.idea/
+.vscode/
+*.swp
