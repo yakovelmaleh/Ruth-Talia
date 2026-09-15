@@ -23,7 +23,8 @@ This workspace keeps every iteration separate so a working version is never over
 | v15 | `versions/v15-relative-footer-icons/` | Text-relative footer icons with smaller mobile scaling |
 | v16 | `versions/v16-inline-contact-icons/` | Simple inline contact symbols followed by footer text |
 | v17 | `versions/v17-refined-social-icons/` | Wider footer spacing and refined letter-sized social marks |
+| v18 | `versions/v18-github-pages-sheets/` | Free GitHub Pages storefront with private Google Sheets order and appointment storage |
 
-Start with `versions/v2-backend/README.md` for setup, configuration, catalog editing, and architecture details.
+Start with `versions/v18-github-pages-sheets/README.md` for the free deployment setup, or `versions/v2-backend/README.md` for the original server architecture.
 
 For future redesigns, copy the latest version into a new folder such as `versions/v3-checkout/`. Do not edit an older version in place.

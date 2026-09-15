@@ -12,6 +12,7 @@ data/*.sqlite-wal
 versions/*/data/*.sqlite
 versions/*/data/*.sqlite-shm
 versions/*/data/*.sqlite-wal
+versions/v18-github-pages-sheets/dist/
 
 # Local editor and operating-system files.
 .idea/
