@@ -1,0 +1,15 @@
+{
+  "name": "ruth-talia-couture-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Stable launcher for the current Ruth Talia Couture website version.",
+  "type": "commonjs",
+  "scripts": {
+    "build": "npm --prefix versions/v18-github-pages-sheets run build",
+    "start": "npm run build && node scripts/serve.js",
+    "check": "node --check scripts/serve.js && npm --prefix versions/v18-github-pages-sheets run check"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

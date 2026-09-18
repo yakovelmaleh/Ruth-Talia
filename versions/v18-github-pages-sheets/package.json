@@ -1,0 +1,18 @@
+{
+  "name": "ruth-talia-couture-v18",
+  "version": "18.0.0",
+  "private": true,
+  "description": "Static bilingual couture storefront for GitHub Pages with a Google Sheets backend.",
+  "type": "commonjs",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "start": "npm run build && node scripts/serve.js",
+    "check": "node --check scripts/build.js && node --check scripts/serve.js && node --check public/api.js && node --check public/store.js && node --check public/features/product-rail/client.js && node --check public/features/gallery-rail/client.js && node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "ejs": "^3.1.10"
+  }
+}
