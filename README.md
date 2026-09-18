@@ -2,6 +2,21 @@
 
 This workspace keeps every iteration separate so a working version is never overwritten.
 
+Open the root `index.html` to view the current version. It points to
+`versions/v18-github-pages-sheets/dist/index.html`, so keep the root page open
+and refresh it after rebuilding the latest version. When a new version becomes
+current, update the root launcher to point to that version.
+
+Use the same command for every version:
+
+```bash
+cd /Users/yakovelmaleh/ruth-talia-couture-website
+npm start
+```
+
+Then open `http://localhost:8787/`. The root launcher builds the current
+version before serving it.
+
 ## Versions
 
 | Version | Location | Purpose |
